@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class=" bg-gray-900 w-full h-screen text-white flex justify-center">
+<div class="bg-gray-900 w-full h-screen text-white flex justify-center">
 	<div class="flex flex-col gap-1 border-gray-800 rounded border w-1/2 h-auto p-5">
 		{#if $walletAccount}
 			{#if !isBsc}
