@@ -24,7 +24,8 @@
 
 	const onboard = Onboard({
 		chains: chains,
-		wallets: [injectedWallet()]
+		wallets: [injectedWallet()],
+		theme: 'dark'
 	});
 
 	async function OnWalletsStateChange(walletState: WalletState[]) {
@@ -40,10 +41,8 @@
 			Object.keys(chainsMetadata).findIndex((key) => {
 				return key.toLowerCase() === walletState[0].chains[0].id.toLowerCase();
 			}) === -1 ||
-			// Delete this part if you don't want to check if the current wallet chain is the one from the store
 			walletState[0].chains[0].id.toLowerCase() !== $activeChain.toLowerCase()
 		) {
-			//await switchChain(Chains.ETH);
 			await switchChain($activeChain);
 		} else {
 			$activeChain = walletState[0].chains[0].id as Chains;
@@ -80,7 +79,7 @@
 	}
 
 	async function switchChain(chain: string | Chains) {
-		await onboard.setChain({ chainId: chain });
+		return await onboard.setChain({ chainId: chain });
 	}
 
 	setContext(CONTEXT_KEY, { connect, disconnect, switchChain });
