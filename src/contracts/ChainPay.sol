@@ -21,28 +21,20 @@ contract ChainPay is Ownable {
     }
 
     function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal {
-        TransferHelper.safeApprove(IERC20(tokenIn), address(swapRouter), tokenIn);
-        
-        IERC20(tokenIn).approve(address(swapRouter), amountIn);
+        TransferHelper.safeApprove(tokenIn, address(swapRouter), tokenIn);
 
-        ISwapRouter.ExactInputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
+        ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
             tokenIn: tokenIn,
             tokenOut: tokenOut,
             fee: fee, // 3000 = 0.3%
             recipient: address(this),
-            deadline: block.timestamp + 15,
-            amountIn: amountIn,
-            amountOutMinimum: amountOutMinimum,
+            deadline: block.timestamp,
+            amountOut: amountOut,
+            amountInMaximum: amountIn,
             sqrtPriceLimitX96: 0
         });
 
-        uniswapRouter.swapExactTokensForTokens(
-            tokenOutBalance,
-            amountOut,
-            path,
-            address(this),
-            block.timestamp + 15
-        );
+        swapRouter.exactOutputSingle(params);
     }
 
 
