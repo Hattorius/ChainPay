@@ -1,4 +1,4 @@
-import { bsc, mainnet, optimism } from 'viem/chains';
+import { bsc, mainnet } from 'viem/chains';
 import type { ChainsMetadata } from './types';
 import { Chains } from './types';
 
