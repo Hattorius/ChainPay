@@ -1,16 +1,21 @@
 {
-  "name": "chainpay",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^22.4.1",
-    "typescript": "^5.5.4"
-  }
+	"name": "chainpay",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "tsc",
+		"format": "prettier --write ."
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^22.4.1",
+		"ethers": "^6.13.2",
+		"typescript": "^5.5.4"
+	},
+	"dependencies": {
+		"prettier": "^3.3.3"
+	}
 }
