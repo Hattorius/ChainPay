@@ -10,6 +10,15 @@ import "./TransferHelper.sol";
 
 
 abstract contract ChainPay is Ownable {
+    event PaymentDone(
+        address indexed recipient,
+        address indexed sender,
+        bytes signature,
+        bytes data,
+        address token,
+        uint256 amount
+    );
+    
     ISwapRouter public immutable swapRouter;
     IWrapped public immutable wrappedCoin;
     address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
