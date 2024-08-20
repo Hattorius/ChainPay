@@ -7,5 +7,5 @@ import { Chains } from './types';
  */
 export const chainsMetadata: ChainsMetadata = {
 	[Chains.ETH]: mainnet,
-	[Chains.BNB]: bsc
+	[Chains.BSC]: bsc
 };

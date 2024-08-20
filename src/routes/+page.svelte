@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { chainsMetadata } from '$lib/stores/auth/constants';
 	import { useAuth } from '$lib/stores/auth/methods';
 	import { accountENS, walletAccount, activeChain } from '$lib/stores/auth/store';
 	import { Chains } from '$lib/stores/auth/types';
@@ -7,14 +6,14 @@
 	const { connect, disconnect, switchChain } = useAuth();
 
 	async function switchToBNB() {
-		$activeChain = Chains.BNB;
+		$activeChain = Chains.BSC;
 		if ($walletAccount) switchChain($activeChain);
 	}
 </script>
 
 <div class=" bg-gray-900 w-full h-screen text-white flex justify-center">
 	<div class="flex flex-col gap-1 border-gray-800 rounded border w-1/2 h-auto p-5">
-		{#if $activeChain !== Chains.BNB}
+		{#if $activeChain !== Chains.BSC}
 			<button
 				class="p-2 bg-blue-500 rounded hover:bg-blue-700 active:bg-blue-400"
 				on:click={switchToBNB}>Switch to Binance Chain</button

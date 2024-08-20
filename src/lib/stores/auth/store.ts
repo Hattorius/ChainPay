@@ -3,7 +3,7 @@ import { createPublicClient, type Address, type WalletClient, http } from 'viem'
 import { Chains } from './types';
 import { chainsMetadata } from './constants';
 
-export const activeChain = writable<Chains>(Chains.BNB);
+export const activeChain = writable<Chains>(Chains.BSC);
 export const walletClient = writable<WalletClient | undefined>();
 
 export const walletAccount = derived<[Readable<WalletClient | undefined>], Address | undefined>(

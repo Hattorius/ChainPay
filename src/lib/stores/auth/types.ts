@@ -5,7 +5,7 @@ import type { Chain } from 'viem/chains';
  */
 export enum Chains {
 	ETH = '0x1',
-	BNB = '0x38'
+	BSC = '0x38'
 }
 
 export type ChainsMetadata = Record<Chains, Chain>;
