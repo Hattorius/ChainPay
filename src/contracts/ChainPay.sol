@@ -20,7 +20,7 @@ contract ChainPay is Ownable {
         wrappedCoin = IWrapped(WRAPPED_COIN);
     }
 
-    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal {
+    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal returns (uint256 amountIn) {
         TransferHelper.safeApprove(tokenIn, address(swapRouter), tokenIn);
 
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
@@ -34,8 +34,6 @@ contract ChainPay is Ownable {
             sqrtPriceLimitX96: 0
         });
 
-        swapRouter.exactOutputSingle(params);
+        return swapRouter.exactOutputSingle(params);
     }
-
-
 }
