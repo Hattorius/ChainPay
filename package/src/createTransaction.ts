@@ -1,48 +1,29 @@
-import { isAddress } from 'ethers';
-import { NotAnAddress } from './errors';
-import signDataWithDerivedKey from './signing/signData';
-import { TransactionType } from './types';
-import generateKeyPair from './signing/generateKeyPair';
+import createTransactionCryptoKeyPair, {
+	CreateTransactionCryptoKeyPairInput
+} from './transacting/createTransactionCryptoKeyPair';
+import createTransactionEthersWallet, {
+	CreateTransactionEthersWalletInput
+} from './transacting/createTransactionEthersWallet';
+import { CreateTransactionInputType } from './types';
 
-const createTransaction = async <T>({
-	recipient,
-	tokenToReceive,
-	tokenToReceiveAmount,
-	data,
-	key
-}: {
-	recipient: string;
-	tokenToReceive: string;
-	tokenToReceiveAmount: bigint;
-	data: T;
-	key?: CryptoKeyPair;
-}) => {
-	if (!isAddress(recipient)) {
-		throw new NotAnAddress(recipient);
-	}
-	if (!isAddress(tokenToReceive)) {
-		throw new NotAnAddress(tokenToReceive);
-	}
+const isCryptoKeyPairInput = (
+	input: CreateTransactionInputType
+): input is CreateTransactionCryptoKeyPairInput =>
+	(input as CreateTransactionCryptoKeyPairInput).key !== undefined;
 
-	if (!key) {
-		key = await generateKeyPair();
+const isEthersWalletInput = (
+	input: CreateTransactionInputType
+): input is CreateTransactionEthersWalletInput =>
+	(input as CreateTransactionEthersWalletInput).wallet !== undefined;
+
+const createTransaction = async (data: CreateTransactionInputType) => {
+	if (isCryptoKeyPairInput(data)) {
+		return await createTransactionCryptoKeyPair(data);
+	} else if (isEthersWalletInput(data)) {
+		return await createTransactionEthersWallet(data);
 	}
 
-	const innerData = {
-		recipient,
-		tokenToReceive,
-		tokenToReceiveAmount,
-		data
-	};
-	const signature = await signDataWithDerivedKey(key.privateKey, innerData);
-
-	return {
-		data,
-		token: tokenToReceive,
-		amount: tokenToReceiveAmount,
-		recipient,
-		signature
-	} as TransactionType<T>;
+	return undefined;
 };
 
 export default createTransaction;

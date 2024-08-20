@@ -1,7 +1,14 @@
-export type TransactionType<T> = {
-	data: T;
+import { CreateTransactionCryptoKeyPairInput } from './transacting/createTransactionCryptoKeyPair';
+import { CreateTransactionEthersWalletInput } from './transacting/createTransactionEthersWallet';
+
+export type TransactionType = {
+	data: any;
 	token: string;
 	amount: bigint;
 	recipient: string;
-	signature: ArrayBuffer;
+	signature: Buffer;
 };
+
+export type CreateTransactionInputType =
+	| CreateTransactionEthersWalletInput
+	| CreateTransactionCryptoKeyPairInput;

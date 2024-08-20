@@ -1,6 +1,8 @@
+import { datafy } from '../data';
+
 const signData = async (key: CryptoKey, data: string | {} | any): Promise<ArrayBuffer> => {
 	const encoder = new TextEncoder();
-	const encodedData = encoder.encode(JSON.stringify(data));
+	const encodedData = encoder.encode(datafy(data));
 
 	return await crypto.subtle.sign(
 		{
