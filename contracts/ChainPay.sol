@@ -8,9 +8,10 @@ import "./ISwapRouter.sol";
 import "./IWrapped.sol";
 import "./TransferHelper.sol";
 import "./ECDSA.sol";
+import "./interfaces/IChainPay.sol";
 
 
-contract ChainPay is Ownable {
+contract ChainPay is Ownable, IChainPay {
     using ECDSA for bytes32;
 
     event PaymentDone(
