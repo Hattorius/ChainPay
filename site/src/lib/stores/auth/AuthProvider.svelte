@@ -9,7 +9,7 @@
 	import type { Chains } from './types';
 	import { onMount, setContext } from 'svelte';
 	import { CONTEXT_KEY } from './methods';
-	import { activeChain, walletAccount, walletClient } from './store';
+	import { activeChain, walletClient } from './store';
 	import { createWalletClient, custom } from 'viem';
 
 	const chains = Object.keys(chainsMetadata).map((key) => {
