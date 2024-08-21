@@ -7,13 +7,16 @@ import "./Ownable.sol";
 import "./ISwapRouter.sol";
 import "./IWrapped.sol";
 import "./TransferHelper.sol";
+import "./ECDSA.sol";
 
 
-abstract contract ChainPay is Ownable {
+contract ChainPay is Ownable {
+    using ECDSA for bytes32;
+
     event PaymentDone(
         address indexed recipient,
         address indexed sender,
-        bytes signature,
+        bytes indexed signature,
         bytes data,
         address token,
         uint256 amount
@@ -46,13 +49,33 @@ abstract contract ChainPay is Ownable {
         return swapRouter.exactOutputSingle(params);
     }
 
+    function getMessageHash(address recipient, address token, uint256 amount, bytes memory data) internal pure returns (bytes32) {
+        return keccak256(abi.encodePacked(recipient, token, amount, data));
+    }
+
+    function getEthSignedMessageHash(bytes32 _messageHash) internal pure returns (bytes32) {
+        return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", _messageHash));
+    }
+
+    function verifySignature(address recipient, address token, uint256 amount, bytes memory data, bytes memory signature) internal pure returns (bool) {
+        bytes32 messageHash = getMessageHash(recipient, token, amount, data);
+        bytes32 ethSignedMessageHash = getEthSignedMessageHash(messageHash);
+        address recoveredSigner = ethSignedMessageHash.recover(signature);
+        return recoveredSigner == recipient;
+    }
+
+
     function pay(address recipient, bytes memory signature, bytes memory data) public payable {
+        require(verifySignature(recipient, WRAPPED_COIN, msg.value, data, signature), "Payment invalid");
+
         bool sent = payable(recipient).send(msg.value);
         require(sent, "Failed sending coins");
         emit PaymentDone(recipient, msg.sender, signature, data, WRAPPED_COIN, msg.value);
     }
 
     function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) public {
+        require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
+
         bool success = IERC20(token).transferFrom(msg.sender, recipient, amount);
         require(success, "Failed sending tokens");
         emit PaymentDone(recipient, msg.sender, signature, data, token, amount);
@@ -60,6 +83,8 @@ abstract contract ChainPay is Ownable {
     }
 
     function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) public {
+        require(verifySignature(recipient, expectedToken, expectedTokenAmount, data, signature), "Payment invalid");
+
         // Exchange tokens for wanted tokens
         TransferHelper.safeTransferFrom(payingToken, msg.sender, address(this), payingTokenAmount);
         uint256 left = swap(payingToken, expectedToken, payingTokenAmount, expectedTokenAmount, fee) - payingTokenAmount;
@@ -83,6 +108,8 @@ abstract contract ChainPay is Ownable {
     }
 
     function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) public payable {
+        require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
+
         wrappedCoin.deposit{ value: msg.value }();
         uint256 left = swap(WRAPPED_COIN, token, msg.value, amount, fee) - msg.value;
 

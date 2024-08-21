@@ -4,3 +4,10 @@ export class NotAnAddress extends Error {
 		this.name = 'Not an EVM address';
 	}
 }
+
+export class NotHex extends Error {
+	constructor(supposedHex: string) {
+		super(`${supposedHex} is not valid hexadecimal!`);
+		this.name = 'Not a hex string';
+	}
+}

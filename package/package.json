@@ -2,10 +2,10 @@
 	"name": "chainpay",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
 	"scripts": {
 		"build": "tsc",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"test-1": "node tests/test1.js"
 	},
 	"keywords": [],
 	"author": "",
