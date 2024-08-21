@@ -26,11 +26,19 @@ contract ChainPay is Ownable {
     IWrapped public immutable wrappedCoin;
     address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
     address public constant WRAPPED_COIN = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; // BNB chain, wrapped BNB
+    mapping(bytes => bool) public isPaid;
+
 
     constructor() Ownable() {
         swapRouter = ISwapRouter(PANCAKESWAP_V3_ROUTER_ADDRESS);
         wrappedCoin = IWrapped(WRAPPED_COIN);
     }
+
+
+    function paid(bytes memory signature) private {
+        isPaid[signature] = true;
+    }
+
 
     function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal returns (uint256) {
         TransferHelper.safeApprove(tokenIn, address(swapRouter), amountIn);
@@ -67,23 +75,29 @@ contract ChainPay is Ownable {
 
     function pay(address recipient, bytes memory signature, bytes memory data) public payable {
         require(verifySignature(recipient, WRAPPED_COIN, msg.value, data, signature), "Payment invalid");
+        require(!isPaid[signature], "This has already been paid");
 
         bool sent = payable(recipient).send(msg.value);
         require(sent, "Failed sending coins");
+
         emit PaymentDone(recipient, msg.sender, signature, data, WRAPPED_COIN, msg.value);
+        paid(signature);
     }
 
     function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) public {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
+        require(!isPaid[signature], "This has already been paid");
 
         bool success = IERC20(token).transferFrom(msg.sender, recipient, amount);
         require(success, "Failed sending tokens");
+        
         emit PaymentDone(recipient, msg.sender, signature, data, token, amount);
-        return;
+        paid(signature);
     }
 
     function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) public {
         require(verifySignature(recipient, expectedToken, expectedTokenAmount, data, signature), "Payment invalid");
+        require(!isPaid[signature], "This has already been paid");
 
         // Exchange tokens for wanted tokens
         TransferHelper.safeTransferFrom(payingToken, msg.sender, address(this), payingTokenAmount);
@@ -105,10 +119,12 @@ contract ChainPay is Ownable {
         }
 
         emit PaymentDone(recipient, msg.sender, signature, data, expectedToken, expectedTokenAmount);
+        paid(signature);
     }
 
     function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) public payable {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
+        require(!isPaid[signature], "This has already been paid");
 
         wrappedCoin.deposit{ value: msg.value }();
         uint256 left = swap(WRAPPED_COIN, token, msg.value, amount, fee) - msg.value;
@@ -123,5 +139,6 @@ contract ChainPay is Ownable {
         }
 
         emit PaymentDone(recipient, msg.sender, signature, data, token, amount);
+        paid(signature);
     }
 }
