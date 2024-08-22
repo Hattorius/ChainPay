@@ -14,6 +14,9 @@ importers:
       '@web3-onboard/injected-wallets':
         specifier: ^2.8.5
         version: 2.11.2(typescript@5.5.4)
+      chainpay:
+        specifier: ^0.0.2
+        version: 0.0.2
       viem:
         specifier: ^0.3.13
         version: 0.3.50(typescript@5.5.4)
@@ -776,6 +779,9 @@ packages:
     resolution: {integrity: sha512-RITGBfijLkBddZvnn8jdqoTypxvqbOLYQkGGxXzeFjVHvudaPw0HNFD9x928/eUwYWd2dPCugVqspGALTZZQKw==}
     engines: {node: '>=4'}
 
+  chainpay@0.0.2:
+    resolution: {integrity: sha512-uWZMVm9Vmm6kMI8/VOjRB+cdWERLzWhz4s//AYDPc/cn1WQuPat+ITBRCBK1IStXJHvlaZ0/teJCZXfEINimFQ==}
+
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
@@ -1493,6 +1499,11 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
     hasBin: true
 
   punycode@2.3.1:
@@ -2563,6 +2574,10 @@ snapshots:
       pathval: 1.1.1
       type-detect: 4.1.0
 
+  chainpay@0.0.2:
+    dependencies:
+      prettier: 3.3.3
+
   chalk@4.1.2:
     dependencies:
       ansi-styles: 4.3.0
@@ -3296,6 +3311,8 @@ snapshots:
       svelte: 3.59.2
 
   prettier@2.8.8: {}
+
+  prettier@3.3.3: {}
 
   punycode@2.3.1: {}
 
