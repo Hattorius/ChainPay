@@ -1,6 +1,6 @@
 <script lang="ts">
 	import TokenPicker from './TokenPicker.svelte';
-	import type { TokenType } from '../types';
+	import type { TokenType } from '../app';
 	import TokenInputAmount from './TokenInputAmount.svelte';
 
 	let toReceive: TokenType | null = null;

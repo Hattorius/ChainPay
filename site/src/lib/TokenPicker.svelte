@@ -3,7 +3,7 @@
 	import { getAddress } from 'viem';
 	import ImageLazyLoad from './ImageLazyLoad.svelte';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
-	import type { TokenType } from '../types';
+	import type { TokenType } from '../app';
 
 	let wrapper: HTMLDivElement;
 	let tokensList: TokenType[] = [];
