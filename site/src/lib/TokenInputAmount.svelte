@@ -12,4 +12,10 @@
 	};
 </script>
 
-<input type="text" class="bg-black border w-full h-10 p-2" on:keyup={handle} bind:value />
+<input
+	type="text"
+	class="bg-black border w-full h-10 p-2"
+	on:keyup={handle}
+	bind:value
+	placeholder="Ex. 5.55"
+/>
