@@ -11,3 +11,10 @@ export class NotHex extends Error {
 		this.name = 'Not a hex string';
 	}
 }
+
+export class NotEncodedTransaction extends Error {
+	constructor(supposedEncodedTransaction: string) {
+		super(`Invalid encoded transaction!`);
+		this.name = `Invalid encoded transaction: ${supposedEncodedTransaction}`;
+	}
+}
