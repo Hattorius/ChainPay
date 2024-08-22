@@ -26,7 +26,7 @@
 			const toSendAmount =
 				(transactionAmountInUSD / payingTokenPrice) * Math.pow(10, parseInt(toSend.decimals));
 
-			paymentDue = BigInt(Math.round(toSendAmount) * 1.05); // Add 5% just to make sure
+			paymentDue = BigInt(Math.round(toSendAmount * 1.05)); // Add 5% just to make sure
 		}
 	}
 
@@ -73,17 +73,17 @@
 							BigInt(transaction.amount),
 							parseInt(getToken.byAddress(transaction.token).decimals)
 						)
-					) * 10000
+					) * 10000000
 				).toString()
-			) / 10000}
+			) / 10000000}
 			{getToken.byAddress(transaction.token).symbol}
 		{:else if paymentDue}
 			Pay max {parseInt(
 				(
 					parseFloat(formatUnits(paymentDue, parseInt(getToken.byAddress(toSend.id).decimals))) *
-					10000
+					10000000
 				).toString()
-			) / 10000}
+			) / 10000000}
 			{getToken.byAddress(toSend.id).symbol}
 		{:else}
 			Wait
