@@ -15,15 +15,17 @@ while True:
         pools(first: 1000, skip: {skip}, where: {{volumeUSD_gte:50000}}, orderBy: volumeUSD, orderDirection: desc) {{
             token0 {{
                 id,
-                    symbol,
+                symbol,
                 name,
-                decimals
+                decimals,
+                txCount
             }},
             token1 {{
                 id,
-                    symbol,
+                symbol,
                 name,
-                decimals
+                decimals,
+                txCount
             }},
             volumeUSD,
             id,
@@ -50,14 +52,17 @@ while True:
 
     skip += 1000
 
-tokens = [json.loads(token) for token in tokens]
+tokens = sorted([json.loads(token) for token in tokens], key=lambda t: int(t["txCount"]), reverse=True)
+for token in tokens:
+    del token["txCount"]
+
 pools = [json.loads(pool) for pool in pools]
 
 print("Got", len(tokens), "tokens")
 print("Got", len(pools), "pools")
 
-with open('src/lib/data/tokens.json', 'w+') as f:
+with open('src/lib/data/tokens.json', 'w') as f:
     f.write(json.dumps(tokens))
 
-with open('src/lib/data/pools.json', 'w+') as f:
+with open('src/lib/data/pools.json', 'w') as f:
     f.write(json.dumps(pools))
