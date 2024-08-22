@@ -21,7 +21,7 @@
 	</div>
 
 	<div class="text-base mt-3">
-		<p>How much tokens?</p>
+		<p>How many tokens?</p>
 		<TokenInputAmount {decimals} on:change={(e) => (amount = e.detail)} />
 	</div>
 
@@ -29,7 +29,7 @@
 		<Wallet>
 			<ConnectButton slot="NotConnected" />
 			<ChangeNetworkButton slot="WrongNetwork" />
-			<CreatePaymentRequestButton />
+			<CreatePaymentRequestButton token={toReceive} {amount} />
 		</Wallet>
 	</div>
 </h2>
