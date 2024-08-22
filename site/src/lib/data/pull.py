@@ -52,17 +52,22 @@ while True:
 
     skip += 1000
 
+seen = set()
 tokens = sorted([json.loads(token) for token in tokens], key=lambda t: int(t["txCount"]), reverse=True)
+new_tokens = []
 for token in tokens:
     del token["txCount"]
+    if token["id"] not in seen:
+        seen.add(token["id"])
+        new_tokens.append(token)
 
 pools = [json.loads(pool) for pool in pools]
 
-print("Got", len(tokens), "tokens")
+print("Got", len(new_tokens), "tokens")
 print("Got", len(pools), "pools")
 
 with open('src/lib/data/tokens.json', 'w') as f:
-    f.write(json.dumps(tokens))
+    f.write(json.dumps(new_tokens))
 
 with open('src/lib/data/pools.json', 'w') as f:
     f.write(json.dumps(pools))
