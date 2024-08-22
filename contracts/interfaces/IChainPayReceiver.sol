@@ -2,5 +2,5 @@
 pragma solidity ^0.8.0;
 
 interface IChainPayReceiver {
-    function paid(address from) external;
+    function paid(address from, bytes memory data) external;
 }

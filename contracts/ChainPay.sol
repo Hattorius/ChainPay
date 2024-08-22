@@ -26,7 +26,7 @@ contract ChainPay is Ownable, IChainPay {
     
     ISwapRouter public immutable swapRouter;
     IWrapped public immutable wrappedCoin;
-    address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
+    address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; //0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
     address public constant WRAPPED_COIN = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; // BNB chain, wrapped BNB
 
     mapping(bytes => bool) public isPaid;
@@ -45,12 +45,12 @@ contract ChainPay is Ownable, IChainPay {
         isPaid[signature] = true;
 
         if (isContract[recipient]) {
-            IChainPayReceiver(recipient).paid(payer);
+            IChainPayReceiver(recipient).paid(payer, data);
         }
     }
 
 
-    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal returns (uint256) {
+    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) public returns (uint256) {
         TransferHelper.safeApprove(tokenIn, address(swapRouter), amountIn);
 
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
