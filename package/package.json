@@ -1,27 +1,29 @@
 {
 	"name": "chainpay",
-	"version": "0.0.3",
+	"version": "0.0.10",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc && cpx src/types.d.ts dist",
 		"format": "prettier --write .",
 		"test-1": "node tests/test1.js"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"src"
 	],
 	"keywords": [],
 	"author": "Aaron Jonk <aaron@jonk.name>",
 	"license": "GPLv3",
 	"devDependencies": {
 		"@types/node": "^22.4.1",
-		"ethers": "^6.13.2",
+		"cpx": "^1.5.0",
+		"prettier": "^3.3.3",
 		"typescript": "^5.5.4"
 	},
 	"dependencies": {
-		"prettier": "^3.3.3",
+		"ethers": "^6.x.x",
 		"viem": "^2.20.0"
 	}
 }
