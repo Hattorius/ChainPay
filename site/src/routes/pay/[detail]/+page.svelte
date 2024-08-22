@@ -28,7 +28,16 @@
 		<Widget transaction={data.transactionDetails} />
 	</div>
 
-	<p class="text-center mt-2">
-		Requested by <Name address={data.transactionDetails.recipient} />
-	</p>
+	{#if !data.embed}
+		<p class="text-center mt-2">
+			Requested by
+			<a
+				class="font-semibold border-b"
+				href={`https://bscscan.com/address/${data.transactionDetails.recipient}`}
+				target="_blank"
+			>
+				<Name address={data.transactionDetails.recipient} />
+			</a>
+		</p>
+	{/if}
 {/if}
