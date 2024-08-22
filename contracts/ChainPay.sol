@@ -97,6 +97,7 @@ contract ChainPay is Ownable, IChainPay {
         signer[msg.sender] = s;
     }
 
+    // invoice in BNB, pays in BNB
     function pay(address recipient, bytes memory signature, bytes memory data) public payable {
         require(verifySignature(recipient, WRAPPED_COIN, msg.value, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
@@ -107,6 +108,7 @@ contract ChainPay is Ownable, IChainPay {
         require(sent, "Failed sending coins");
     }
 
+    // invoice in token, pays in same token
     function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) public {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
@@ -117,6 +119,7 @@ contract ChainPay is Ownable, IChainPay {
         require(success, "Failed sending tokens");
     }
 
+    // invoice in token or BNB, pays in other token
     function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) public {
         require(verifySignature(recipient, expectedToken, expectedTokenAmount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
@@ -143,6 +146,7 @@ contract ChainPay is Ownable, IChainPay {
         }
     }
 
+    // invoice in token, pays in BNB
     function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) public payable {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
