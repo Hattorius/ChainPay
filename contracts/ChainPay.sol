@@ -50,7 +50,7 @@ contract ChainPay is Ownable, IChainPay {
     }
 
 
-    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) public returns (uint256) {
+    function swap(address tokenIn, address tokenOut, uint256 amountIn, uint256 amountOutMax, uint24 fee) internal returns (uint256) {
         TransferHelper.safeApprove(tokenIn, address(swapRouter), amountIn);
 
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactOutputSingleParams({
