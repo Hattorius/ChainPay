@@ -3,10 +3,11 @@
 	import { getAddress } from 'viem';
 	import ImageLazyLoad from './ImageLazyLoad.svelte';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
+	import type { TokenType } from '../types';
 
 	let wrapper: HTMLDivElement;
-	let tokensList: typeof tokens = [];
-	let selected: (typeof tokens)[0] | null = null;
+	let tokensList: TokenType[] = [];
+	let selected: TokenType | null = null;
 	let container: HTMLDivElement;
 	let isOpen = false;
 	let tokenInput: HTMLInputElement;
@@ -36,7 +37,7 @@
 		isOpen = false;
 	};
 
-	const select = (token: (typeof tokens)[0]) => {
+	const select = (token: TokenType) => {
 		dispatch('change', token);
 		selected = token;
 		close();
