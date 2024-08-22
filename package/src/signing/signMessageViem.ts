@@ -1,10 +1,14 @@
-import { WalletClient } from 'viem';
+import { Account, SignMessageParameters, SignMessageReturnType } from 'viem';
 import dataToHash from '../dataToHash';
 import { getBytes } from 'ethers';
 import { SignResultType } from '../types';
 
 export interface SignMessageViemInput {
-	walletClient: WalletClient;
+	walletClient: {
+		signMessage: (
+			args: SignMessageParameters<Account | undefined>
+		) => Promise<SignMessageReturnType>;
+	};
 	account: `0x${string}`;
 	recipient?: string;
 	token: string;
