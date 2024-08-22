@@ -10,3 +10,5 @@ Shit I just remembered how little time I have left. Even though the deadline is 
 - Invoice in token, pays in same token
 - Invoice in token or BNB, pays in other token
 - Invoice in token, pays in BNB
+
+# I'm so happy this tool is called "Insomnia", it literally describes me right now
