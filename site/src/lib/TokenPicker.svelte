@@ -1,10 +1,10 @@
 <script lang="ts">
-	import tokens from '$lib/tokens.json';
 	import { getAddress } from 'viem';
 	import ImageLazyLoad from './ImageLazyLoad.svelte';
 	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import type { TokenType } from '../app';
 
+	export let tokens: TokenType[];
 	let wrapper: HTMLDivElement;
 	let tokensList: TokenType[] = [];
 	let selected: TokenType | null = null;

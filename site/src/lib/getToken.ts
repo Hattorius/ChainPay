@@ -1,4 +1,4 @@
-import tokens from '$lib/tokens.json';
+import tokens from '$lib/data/tokens.json';
 
 const byAddress = (address: string) => tokens.filter((token) => token.id === address)[0];
 

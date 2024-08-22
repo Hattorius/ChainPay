@@ -6,6 +6,7 @@
 	import ConnectButton from './ConnectButton.svelte';
 	import ChangeNetworkButton from './ChangeNetworkButton.svelte';
 	import CreatePaymentRequestButton from './CreatePaymentRequestButton.svelte';
+	import tokens from '$lib/tokens';
 
 	let toReceive: TokenType | null = null;
 	$: decimals = toReceive ? parseInt(toReceive.decimals) : 0;
@@ -17,7 +18,7 @@
 
 	<div class="text-base mt-3">
 		<p>Pick a token to receive</p>
-		<TokenPicker on:change={(e) => (toReceive = e.detail)} />
+		<TokenPicker tokens={tokens.getAll()} on:change={(e) => (toReceive = e.detail)} />
 	</div>
 
 	<div class="text-base mt-3">

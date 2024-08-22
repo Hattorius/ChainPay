@@ -5,6 +5,7 @@
 	import type { TokenType } from '../../app';
 	import getPrice from '$lib/getPrice';
 	import getToken from '$lib/getToken';
+	import tokens from '$lib/tokens';
 
 	export let transaction: TransactionType;
 	let payingTokenPrice = 0;
@@ -60,7 +61,7 @@
 
 <div class="text-base">
 	<p>Pick a token to pay with</p>
-	<TokenPicker on:change={onTokenPick} />
+	<TokenPicker tokens={tokens.getPaired(transaction.token)} on:change={onTokenPick} />
 
 	<button class="border mt-6 w-full h-10 hover:bg-gray-900 transition" on:click={onClick}>
 		{#if toSend === null}
