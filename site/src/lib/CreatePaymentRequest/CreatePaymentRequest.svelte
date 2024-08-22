@@ -1,8 +1,8 @@
 <script lang="ts">
-	import TokenPicker from './TokenPicker.svelte';
-	import type { TokenType } from '../app';
-	import TokenInputAmount from './TokenInputAmount.svelte';
-	import Wallet from './Wallet.svelte';
+	import TokenPicker from '../TokenPicker.svelte';
+	import type { TokenType } from '../../app';
+	import TokenInputAmount from '../TokenInputAmount.svelte';
+	import Wallet from '../Wallet.svelte';
 	import ConnectButton from './ConnectButton.svelte';
 	import ChangeNetworkButton from './ChangeNetworkButton.svelte';
 	import CreatePaymentRequestButton from './CreatePaymentRequestButton.svelte';

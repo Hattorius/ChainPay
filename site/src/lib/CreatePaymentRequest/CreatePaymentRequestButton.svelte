@@ -1,6 +1,6 @@
 <script lang="ts">
 	import chainpay from 'chainpay';
-	import { walletAccount, walletClient } from './stores/auth/store';
+	import { walletAccount, walletClient } from '../stores/auth/store';
 
 	async function sign() {
 		if ($walletClient?.signMessage && $walletAccount) {

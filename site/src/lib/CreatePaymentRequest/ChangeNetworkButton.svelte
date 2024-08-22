@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { useAuth } from './stores/auth/methods';
-	import { activeChain, walletAccount } from './stores/auth/store';
-	import { Chains } from './stores/auth/types';
+	import { useAuth } from '../stores/auth/methods';
+	import { activeChain, walletAccount } from '../stores/auth/store';
+	import { Chains } from '../stores/auth/types';
 
 	const { switchChain } = useAuth();
 

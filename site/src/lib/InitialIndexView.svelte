@@ -1,5 +1,5 @@
 <script>
-	import CreatePaymentRequest from './CreatePaymentRequest.svelte';
+	import CreatePaymentRequest from './CreatePaymentRequest/CreatePaymentRequest.svelte';
 </script>
 
 <div class="initial-view select-none">
