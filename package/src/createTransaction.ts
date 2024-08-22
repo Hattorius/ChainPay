@@ -1,6 +1,7 @@
 import { CreateTransactionInput, TransactionType } from './types';
 import { isEthersInput, signMessageEthers } from './signing/signMessageEthers';
 import { isViemInput, signMessageViem } from './signing/signMessageViem';
+import safeBase64 from './safeBase64';
 
 const createTransaction = async (input: CreateTransactionInput) => {
 	let data, signature, recipient;
@@ -18,7 +19,8 @@ const createTransaction = async (input: CreateTransactionInput) => {
 		token: input.token,
 		amount: input.amount,
 		recipient,
-		signature: signature
+		signature: signature,
+		encoded: safeBase64.encode(`${recipient}${input.token}${signature}${input.amount}${data}`)
 	} as TransactionType;
 };
 

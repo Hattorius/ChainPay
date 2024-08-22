@@ -14,6 +14,7 @@ export type TransactionType = {
 	amount: number | bigint;
 	recipient: string;
 	signature: string;
+	encoded: string;
 };
 
 export type CreateTransactionInput = SignMessageEthersInput | SignMessageViemInput;
