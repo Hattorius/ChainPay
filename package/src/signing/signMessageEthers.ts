@@ -1,6 +1,6 @@
 import { getBytes, Wallet } from 'ethers';
 import dataToHash from '../dataToHash';
-import { CreateTransactionInput, SignResultType } from '../types';
+import { SignResultType } from '../types';
 
 export interface SignMessageEthersInput {
 	signer: Wallet;
