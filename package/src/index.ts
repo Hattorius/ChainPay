@@ -1,7 +1,7 @@
 import createTransaction from './createTransaction';
 import utils from './utils';
 
-module.exports = {
+export default {
 	...utils,
 	createTransaction
 };
