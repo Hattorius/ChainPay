@@ -6,4 +6,6 @@ interface IChainPay {
     function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) external;
     function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) external;
     function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) external payable;
+    function setSigner(address signer) external;
+    function contractToggle() external;
 }
