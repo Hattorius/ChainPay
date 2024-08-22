@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="right flex-1 flex">
-			<div class="border p-4 min-w-80">
+			<div class="border p-4 w-80">
 				<CreatePaymentRequest />
 			</div>
 		</div>

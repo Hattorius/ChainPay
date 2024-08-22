@@ -29,6 +29,13 @@ export const publicClient = derived(activeChain, ($activeChain) => {
 	});
 });
 
+export const createEthPublicClient = () => {
+	return createPublicClient({
+		chain: chainsMetadata[Chains.ETH],
+		transport: http()
+	});
+};
+
 export const accountENS = derived([walletAccount], ([$walletAccount], set) => {
 	if (!$walletAccount) return undefined;
 
