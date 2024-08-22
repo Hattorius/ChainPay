@@ -1,6 +1,17 @@
 <script lang="ts">
+	import chainpay from 'chainpay';
+	import { walletAccount, walletClient } from './stores/auth/store';
+
 	async function sign() {
-		// TODO: sign (wow such helpful comment)
+		if ($walletClient?.signMessage && $walletAccount) {
+			const res = await chainpay.createTransaction({
+				walletClient: $walletClient,
+				account: $walletAccount,
+				token: $walletAccount,
+				amount: 0,
+				data_string: ''
+			});
+		}
 	}
 </script>
 
