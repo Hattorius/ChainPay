@@ -2,6 +2,10 @@
 	import TokenPicker from './TokenPicker.svelte';
 	import type { TokenType } from '../app';
 	import TokenInputAmount from './TokenInputAmount.svelte';
+	import Wallet from './Wallet.svelte';
+	import ConnectButton from './ConnectButton.svelte';
+	import ChangeNetworkButton from './ChangeNetworkButton.svelte';
+	import CreatePaymentRequestButton from './CreatePaymentRequestButton.svelte';
 
 	let toReceive: TokenType | null = null;
 	$: decimals = toReceive ? parseInt(toReceive.decimals) : 0;
@@ -19,5 +23,13 @@
 	<div class="text-base mt-3">
 		<p>How much tokens?</p>
 		<TokenInputAmount {decimals} on:change={(e) => (amount = e.detail)} />
+	</div>
+
+	<div class="text-lg">
+		<Wallet>
+			<ConnectButton slot="NotConnected" />
+			<ChangeNetworkButton slot="WrongNetwork" />
+			<CreatePaymentRequestButton />
+		</Wallet>
 	</div>
 </h2>
