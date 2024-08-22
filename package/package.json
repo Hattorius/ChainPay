@@ -1,6 +1,6 @@
 {
 	"name": "chainpay",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
@@ -21,6 +21,7 @@
 		"typescript": "^5.5.4"
 	},
 	"dependencies": {
-		"prettier": "^3.3.3"
+		"prettier": "^3.3.3",
+		"viem": "^2.20.0"
 	}
 }

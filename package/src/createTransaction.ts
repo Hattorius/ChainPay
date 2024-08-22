@@ -1,39 +1,24 @@
-import { Wallet } from 'ethers';
-import { datafy } from './data';
-import { TransactionType } from './types';
-import signMessage from './signing/signMessage';
+import { CreateTransactionInput, TransactionType } from './types';
+import { isEthersInput, signMessageEthers } from './signing/signMessageEthers';
+import { isViemInput, signMessageViem } from './signing/signMessageViem';
 
-const createTransaction = async ({
-	wallet,
-	recipient,
-	tokenToReceive,
-	tokenToReceiveAmount,
-	data
-}: {
-	wallet: Wallet;
-	recipient?: string;
-	tokenToReceive: string;
-	tokenToReceiveAmount: number | bigint;
-	data: any;
-}) => {
-	if (!recipient) {
-		recipient = wallet.address;
+const createTransaction = async (input: CreateTransactionInput) => {
+	let data, signature, recipient;
+
+	if (isEthersInput(input)) {
+		({ data, signature, recipient } = await signMessageEthers(input));
+	} else if (isViemInput(input)) {
+		({ data, signature, recipient } = await signMessageViem(input));
 	}
 
-	const signing = await signMessage(
-		wallet,
-		recipient,
-		tokenToReceive,
-		tokenToReceiveAmount,
-		datafy(data)
-	);
+	if (!data || !signature || !recipient) return undefined;
 
 	return {
-		data: signing.data,
-		token: tokenToReceive,
-		amount: tokenToReceiveAmount,
+		data: data,
+		token: input.token,
+		amount: input.amount,
 		recipient,
-		signature: signing.signature
+		signature: signature
 	} as TransactionType;
 };
 
