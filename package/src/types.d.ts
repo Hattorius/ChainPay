@@ -11,7 +11,7 @@ export type SignResultType = {
 export type TransactionType = {
 	data: string;
 	token: string;
-	amount: bigint;
+	amount: number | bigint;
 	recipient: string;
 	signature: string;
 };
