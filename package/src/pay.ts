@@ -10,6 +10,7 @@ export type PayInput =
 			transaction: string | TransactionType;
 			token: `0x${string}`; // token user wants to pay with
 			amount: bigint; // amount user wants to pay with
+			feeTier?: number;
 			chainpayContract: `0x${string}`;
 			type: 'diy';
 	  }
@@ -17,6 +18,7 @@ export type PayInput =
 			transaction: string | TransactionType;
 			token: `0x${string}`; // token user wants to pay with
 			amount: bigint; // amount user wants to pay with
+			feeTier?: number;
 			chainpayContract: `0x${string}`;
 			type: 'viem';
 			wallet: WalletClient;
@@ -25,7 +27,7 @@ export type PayInput =
 const WRAPPED_BNB = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c';
 
 const pay = async (input: PayInput) => {
-	let { transaction, token, amount, chainpayContract } = input;
+	let { transaction, token, amount, chainpayContract, feeTier } = input;
 	if (typeof transaction === 'string') {
 		transaction = utils.decodeTransaction(transaction);
 	}
@@ -65,9 +67,12 @@ const pay = async (input: PayInput) => {
 	} else if (transaction.token !== WRAPPED_BNB && token === WRAPPED_BNB) {
 		// invoice in token, pays in BNB
 		// pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) payable
-		const pool = findPool(transaction.token, WRAPPED_BNB);
-		if (!pool) {
-			return undefined; // give up
+		if (!feeTier) {
+			const pool = findPool(transaction.token, WRAPPED_BNB);
+			if (!pool) {
+				return undefined; // give up
+			}
+			feeTier = pool.feeTier;
 		}
 
 		data = {
@@ -76,7 +81,7 @@ const pay = async (input: PayInput) => {
 				transaction.recipient,
 				transaction.token,
 				BigInt(transaction.amount),
-				pool.feeTier,
+				feeTier,
 				transaction.signature,
 				transaction.data
 			]
@@ -84,9 +89,12 @@ const pay = async (input: PayInput) => {
 	} else {
 		// invoice in token or BNB, pays in other token
 		// pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data)
-		const pool = findPool(transaction.token, token);
-		if (!pool) {
-			return undefined; // also give up
+		if (!feeTier) {
+			const pool = findPool(transaction.token, token);
+			if (!pool) {
+				return undefined; // also give up
+			}
+			feeTier = pool.feeTier;
 		}
 
 		data = {
@@ -96,7 +104,7 @@ const pay = async (input: PayInput) => {
 				BigInt(transaction.amount),
 				token,
 				amount,
-				pool.feeTier,
+				feeTier,
 				transaction.signature,
 				transaction.data
 			],
@@ -123,3 +131,5 @@ const pay = async (input: PayInput) => {
 		});
 	}
 };
+
+export default pay;

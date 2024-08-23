@@ -1,6 +1,5 @@
-import { getContract, WalletClient } from 'viem';
-import { PaymentData, TransactionType } from '../types';
-import utils from '../utils';
+import { WalletClient } from 'viem';
+import type { PaymentData } from '../types';
 import abi from '../abi.json';
 import { erc20Abi } from 'viem';
 import getPublicClient from '../getPublicClient';
