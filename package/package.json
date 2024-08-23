@@ -8,7 +8,9 @@
 		"build": "tsc && cpx src/types.d.ts dist",
 		"format": "cpx ../contracts/abi.json src && cpx ../site/src/lib/data/pools.json src && prettier --write .",
 		"test-1": "node tests/test1.js",
-		"test-2": "node tests/test2.js"
+		"test-2": "node tests/test2.js",
+		"pub": "pnpm format && pnpm build && pnpm publish",
+		"pub-hard": "pnpm format && pnpm build && pnpm publish --no-git-checks"
 	},
 	"files": [
 		"dist",
