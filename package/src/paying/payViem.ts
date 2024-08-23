@@ -1,46 +1,39 @@
 import { getContract, WalletClient } from 'viem';
-import { TransactionType } from '../types';
+import { PaymentData, TransactionType } from '../types';
 import utils from '../utils';
 import abi from '../abi.json';
 import { erc20Abi } from 'viem';
 import getPublicClient from '../getPublicClient';
 
 export interface PayViemInput {
-	transaction: string | TransactionType;
-	token: `0x${string}`; // token user wants to pay with
-	amount: bigint; // amount user wants to pay with
 	wallet: WalletClient;
-    chainpayAddress: `0x${string}`;
+	paymentData: PaymentData<typeof abi>;
 }
 
-const payViem = async ({ transaction, token, amount, wallet, chainpayAddress }: PayViemInput) => {
-    if (!wallet.account) return;
+const payViem = async ({ wallet, paymentData }: PayViemInput) => {
+	if (!wallet.account) return;
+	const publicClient = getPublicClient();
 
-	if (typeof transaction === 'string') {
-		transaction = utils.decodeTransaction(transaction);
+	if (paymentData.approve) {
+		const approveResult = await publicClient.simulateContract({
+			address: paymentData.approve.token,
+			abi: erc20Abi,
+			functionName: 'approve',
+			account: wallet.account,
+			args: [paymentData.chainpayContract, paymentData.approve.amount]
+		});
+		await wallet.writeContract(approveResult.request);
 	}
 
-    const publicClient = getPublicClient();
-
-    const contract = getContract({
-        address: chainpayAddress,
-        abi,
-        client: {
-            wallet
-        }
-    });
-
-    const approveResult = await publicClient.simulateContract({
-        address: token,
-        abi: erc20Abi,
-        functionName: 'approve',
-        account: wallet.account,
-        args: [
-            chainpayAddress,
-            amount
-        ]
-    });
-    await wallet.writeContract(approveResult.request);
+	const payResult = await publicClient.simulateContract({
+		address: paymentData.chainpayContract,
+		abi: paymentData.abi,
+		functionName: paymentData.functionName,
+		account: wallet.account,
+		args: paymentData.args,
+		value: paymentData.value
+	});
+	await wallet.writeContract(payResult.request);
 };
 
 export default payViem;

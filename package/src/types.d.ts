@@ -17,4 +17,20 @@ export type TransactionType = {
 	encoded: string;
 };
 
+export type PaymentData<T> = {
+	value?: bigint;
+	args:
+		| [string, string, string]
+		| [string, string, bigint, string, string]
+		| [string, string, bigint, number, string, string]
+		| [string, string, bigint, string, bigint, number, string, string];
+	chainpayContract: `0x${string}`;
+	abi: T;
+	functionName: string;
+	approve?: {
+		token: `0x${string}`;
+		amount: bigint;
+	};
+};
+
 export type CreateTransactionInput = SignMessageEthersInput | SignMessageViemInput;

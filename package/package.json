@@ -1,12 +1,12 @@
 {
 	"name": "chainpay",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"description": "",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "tsc && cpx src/types.d.ts dist",
-		"format": "cpx ../contracts/abi.json src && prettier --write .",
+		"format": "cpx ../contracts/abi.json src && cpx ../site/src/lib/data/pools.json src && prettier --write .",
 		"test-1": "node tests/test1.js",
 		"test-2": "node tests/test2.js"
 	},
