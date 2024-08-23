@@ -1,5 +1,4 @@
 import { WalletClient } from 'viem';
-import findPool from './findPool';
 import { PaymentData, TransactionType } from './types';
 import utils from './utils';
 import abi from './abi.json';
@@ -13,7 +12,7 @@ export type PayInput =
 			amount: bigint; // amount user wants to pay with
 			feeTier?: number;
 			chainpayContract: `0x${string}`;
-			type: 'diy';
+			type: 'raw';
 	  }
 	| {
 			transaction: string | TransactionType;
@@ -67,7 +66,7 @@ const pay = async (input: PayInput) => {
 		// invoice in token, pays in BNB
 		// pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) payable
 		if (!feeTier) {
-			const pool = findPool(transaction.token, constants.WRAPPED_BNB);
+			const pool = utils.findPool(transaction.token, constants.WRAPPED_BNB);
 			if (!pool) {
 				return undefined; // give up
 			}
@@ -89,7 +88,7 @@ const pay = async (input: PayInput) => {
 		// invoice in token or BNB, pays in other token
 		// pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data)
 		if (!feeTier) {
-			const pool = findPool(transaction.token, token);
+			const pool = utils.findPool(transaction.token, token);
 			if (!pool) {
 				return undefined; // also give up
 			}
@@ -121,7 +120,7 @@ const pay = async (input: PayInput) => {
 		functionName: 'pay'
 	} as PaymentData<typeof abi>;
 
-	if (input.type === 'diy') {
+	if (input.type === 'raw') {
 		return paymentData;
 	} else if (input.type === 'viem') {
 		return await payViem({

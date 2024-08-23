@@ -1,6 +1,6 @@
 import { getBytes, Wallet } from 'ethers';
-import dataToHash from '../dataToHash';
 import { SignResultType } from '../types';
+import utils from '../utils';
 
 export interface SignMessageEthersInput {
 	signer: Wallet;
@@ -8,10 +8,11 @@ export interface SignMessageEthersInput {
 	token: string;
 	amount: number | bigint;
 	data_string: string;
+	type: 'ethers';
 }
 
 export const isEthersInput = (obj: any): obj is SignMessageEthersInput =>
-	obj && typeof obj.signer !== 'undefined';
+	obj && obj.type == 'ethers';
 
 export const signMessageEthers = async ({
 	signer,
@@ -24,7 +25,7 @@ export const signMessageEthers = async ({
 		recipient = signer.address;
 	}
 
-	const { data, messageHash } = dataToHash(recipient, token, amount, data_string);
+	const { data, messageHash } = utils.dataToHash(recipient, token, amount, data_string);
 	const signature = await signer.signMessage(getBytes(messageHash));
 
 	return {

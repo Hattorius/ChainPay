@@ -1,7 +1,7 @@
 import { Account, SignableMessage, SignMessageReturnType } from 'viem';
-import dataToHash from '../dataToHash';
 import { getBytes } from 'ethers';
 import { SignResultType } from '../types';
+import utils from '../utils';
 
 export interface SignMessageViemInput {
 	walletClient: {
@@ -15,10 +15,10 @@ export interface SignMessageViemInput {
 	token: string;
 	amount: number | bigint;
 	data_string: string;
+	type: 'viem';
 }
 
-export const isViemInput = (obj: any): obj is SignMessageViemInput =>
-	obj && typeof obj.walletClient !== 'undefined';
+export const isViemInput = (obj: any): obj is SignMessageViemInput => obj && obj.type === 'viem';
 
 export const signMessageViem = async ({
 	walletClient,
@@ -32,7 +32,7 @@ export const signMessageViem = async ({
 		recipient = account;
 	}
 
-	const { data, messageHash } = dataToHash(recipient, token, amount, data_string);
+	const { data, messageHash } = utils.dataToHash(recipient, token, amount, data_string);
 	const signature = await walletClient.signMessage({
 		message: {
 			raw: getBytes(messageHash)
