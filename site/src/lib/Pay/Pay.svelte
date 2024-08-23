@@ -102,7 +102,7 @@
 				amount,
 				feeTier: 500,
 				chainpayContract: CHAINPAY_CONTRACT,
-				type: 'diy'
+				type: 'raw'
 			});
 
 			if (paymentDetails) {

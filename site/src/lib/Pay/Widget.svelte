@@ -90,14 +90,7 @@
 
 	onMount(() => {
 		(async () => {
-			const result = await $publicClient.readContract({
-				address: CHAINPAY_CONTRACT,
-				abi: chainpay.abi,
-				functionName: 'isPaid',
-				args: [transaction.signature]
-			});
-
-			paid = result as boolean;
+			paid = await chainpay.isPaid(CHAINPAY_CONTRACT, transaction.signature);
 		})();
 	});
 </script>

@@ -18,9 +18,9 @@
 		if (isOpen && tokenInputValue && tokenInputValue != '') {
 			tokensList = tokens.filter(
 				(t) =>
-					t.name.includes(tokenInputValue) ||
-					t.symbol.includes(tokenInputValue) ||
-					t.id.includes(tokenInputValue)
+					t.name.toLowerCase().includes(tokenInputValue.toLowerCase()) ||
+					t.symbol.toLowerCase().includes(tokenInputValue.toLowerCase()) ||
+					t.id.toLowerCase().includes(tokenInputValue.toLowerCase())
 			);
 		} else {
 			tokensList = tokens;

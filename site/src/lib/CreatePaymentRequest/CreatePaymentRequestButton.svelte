@@ -15,7 +15,8 @@
 				account: $walletAccount,
 				token: token.id,
 				amount: actualAmount,
-				data_string: Date.now().toString()
+				data_string: Date.now().toString(),
+				type: 'viem'
 			});
 
 			if (res) {
