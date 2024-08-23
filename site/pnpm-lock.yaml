@@ -15,8 +15,8 @@ importers:
         specifier: ^2.8.5
         version: 2.11.2(typescript@5.5.4)
       chainpay:
-        specifier: ^0.0.25
-        version: 0.0.25(typescript@5.5.4)
+        specifier: ^0.0.28
+        version: 0.0.28(typescript@5.5.4)
       crypto-browserify:
         specifier: ^3.12.0
         version: 3.12.0
@@ -846,8 +846,8 @@ packages:
     resolution: {integrity: sha512-RITGBfijLkBddZvnn8jdqoTypxvqbOLYQkGGxXzeFjVHvudaPw0HNFD9x928/eUwYWd2dPCugVqspGALTZZQKw==}
     engines: {node: '>=4'}
 
-  chainpay@0.0.25:
-    resolution: {integrity: sha512-Ctm/Pxs58SFeg8MnpgwWje57RAn5WGT9zLn+mTa6+oMfQx1XwwaUZI6eCsymkGpSqAU0rP10FaqhOTKtApwofg==}
+  chainpay@0.0.28:
+    resolution: {integrity: sha512-D9RvbYpm3u2K92DCU9cvp38HSKYrdbPHWM6JA4+6KzZo36cZaonjY2dBgqz2Dr+7f5lQfqioPHd9f3JO0/tcKw==}
 
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
@@ -2853,7 +2853,7 @@ snapshots:
       pathval: 1.1.1
       type-detect: 4.1.0
 
-  chainpay@0.0.25(typescript@5.5.4):
+  chainpay@0.0.28(typescript@5.5.4):
     dependencies:
       ethers: 6.13.2
       viem: 2.20.0(typescript@5.5.4)

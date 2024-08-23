@@ -14,8 +14,6 @@
 	import { publicClient } from '$lib/stores/auth/store';
 	import getPrice from '$lib/getPrice';
 
-	const CHAINPAY_CONTRACT = '0x0C5BE6D232e89723F6aFd50707a6610b8e41b167';
-
 	export let transaction: TransactionType;
 
 	let payingTokenPrice = 0;
@@ -25,6 +23,7 @@
 	let paymentDue: bigint | undefined;
 	let paid = false;
 
+	$: CHAINPAY_CONTRACT = chainpay.constants.CHAINPAY_CONTRACT_ADDRESS as `0x${string}`;
 	$: paymentAmount = paymentDue ? paymentDue : BigInt(0);
 	$: buttonText =
 		toSend !== null
