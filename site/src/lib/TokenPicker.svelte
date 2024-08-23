@@ -71,9 +71,10 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="p-2 flex gap-2" on:click={open}>
 			<div class="h-6 w-6">
-				<img
+				<ImageLazyLoad
 					src={`https://tokens.pancakeswap.finance/images/${getAddress(selected.id)}.png`}
 					alt={selected.name}
+					root={null}
 				/>
 			</div>
 

@@ -55,10 +55,15 @@
 					args: [r.chainpayContract, r.approve.amount],
 					chain: bsc
 				});
-				const hash = await $walletClient.writeContract(approveResult.request);
-				await $publicClient.waitForTransactionReceipt({
-					hash
-				});
+				try {
+					const hash = await $walletClient.writeContract(approveResult.request);
+					await $publicClient.waitForTransactionReceipt({
+						hash
+					});
+				} catch {
+					loading = false;
+					return;
+				}
 
 				loading = false;
 				approved = true;
@@ -74,10 +79,15 @@
 				value: r.value as any, // wtf why does it only allow "undefined" type
 				chain: bsc
 			});
-			const hash = await $walletClient.writeContract(payResult.request);
-			await $publicClient.waitForTransactionReceipt({
-				hash
-			});
+			try {
+				const hash = await $walletClient.writeContract(payResult.request);
+				await $publicClient.waitForTransactionReceipt({
+					hash
+				});
+			} catch {
+				loading = false;
+				return;
+			}
 
 			loading = false;
 			paid = true;

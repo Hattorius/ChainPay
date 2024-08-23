@@ -6,7 +6,7 @@
 
 	export let src = '';
 	export let alt = '';
-	export let root: HTMLDivElement;
+	export let root: HTMLDivElement | null;
 
 	let container: HTMLDivElement;
 	let observer: IntersectionObserver;

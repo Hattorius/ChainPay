@@ -75,16 +75,15 @@
 		toSend = e.detail;
 
 		if (toSend.id !== transaction.token) {
-			if (isDifferent) {
-				if (receivingTokenPrice === 0) {
-					(async () => {
-						receivingTokenPrice = (await getPrice(transaction.token)) ?? 0;
-					})();
-				}
+			isDifferent = true;
+			if (receivingTokenPrice === 0) {
 				(async () => {
-					payingTokenPrice = (await getPrice(toSend.id)) ?? 0;
+					receivingTokenPrice = (await getPrice(transaction.token)) ?? 0;
 				})();
 			}
+			(async () => {
+				payingTokenPrice = (await getPrice(toSend.id)) ?? 0;
+			})();
 		} else {
 			isDifferent = false;
 		}
@@ -125,15 +124,17 @@
 				<ConnectButton slot="NotConnected" />
 				<ChangeNetworkButton slot="WrongNetwork" />
 				{#if (isDifferent && paymentDue) || !isDifferent}
-					<Pay
-						{transaction}
-						{CHAINPAY_CONTRACT}
-						token={toSend.id}
-						amount={paymentAmount}
-						symbol={toSend.symbol}
-					>
-						{buttonText}
-					</Pay>
+					{#key toSend}
+						<Pay
+							{transaction}
+							{CHAINPAY_CONTRACT}
+							token={toSend.id}
+							amount={paymentAmount}
+							symbol={toSend.symbol}
+						>
+							{buttonText}
+						</Pay>
+					{/key}
 				{/if}
 			</Wallet>
 		{/if}
