@@ -4,6 +4,7 @@ import { PaymentData, TransactionType } from './types';
 import utils from './utils';
 import abi from './abi.json';
 import payViem from './paying/payViem';
+import constants from './constants';
 
 export type PayInput =
 	| {
@@ -41,7 +42,7 @@ const pay = async (input: PayInput) => {
 		};
 	};
 
-	if (transaction.token === WRAPPED_BNB && token === WRAPPED_BNB) {
+	if (transaction.token === constants.WRAPPED_BNB && token === constants.WRAPPED_BNB) {
 		// invoice in BNB, pays in BNB
 		// pay(address recipient, bytes memory signature, bytes memory data) payable
 		data = {
@@ -64,11 +65,11 @@ const pay = async (input: PayInput) => {
 				amount: BigInt(transaction.amount)
 			}
 		};
-	} else if (transaction.token !== WRAPPED_BNB && token === WRAPPED_BNB) {
+	} else if (transaction.token !== constants.WRAPPED_BNB && token === constants.WRAPPED_BNB) {
 		// invoice in token, pays in BNB
 		// pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) payable
 		if (!feeTier) {
-			const pool = findPool(transaction.token, WRAPPED_BNB);
+			const pool = findPool(transaction.token, constants.WRAPPED_BNB);
 			if (!pool) {
 				return undefined; // give up
 			}

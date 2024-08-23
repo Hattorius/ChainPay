@@ -6,7 +6,6 @@
 // this DOES NOT work
 // this DOES NOT work
 
-
 import type { PaymentData } from '../types';
 import abi from '../abi.json';
 import { erc20Abi } from 'viem';

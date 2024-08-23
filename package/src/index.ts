@@ -6,6 +6,7 @@ import pay from './pay';
 import abi from './abi.json';
 import { erc20Abi } from 'viem';
 import isPaid from './isPaid';
+import constants from './constants';
 
 export { CreateTransactionInput, TransactionType, PaymentData };
 
@@ -16,5 +17,6 @@ export default {
 	pay,
 	abi,
 	erc20Abi,
-	isPaid
+	isPaid,
+	constants
 };
