@@ -26,12 +26,13 @@ contract ChainPay is Ownable, IChainPay {
     
     ISwapRouter public immutable swapRouter;
     IWrapped public immutable wrappedCoin;
-    address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; //0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
+    address public constant PANCAKESWAP_V3_ROUTER_ADDRESS = 0x1b81D678ffb9C0263b24A97847620C99d213eB14; // BNB chain
     address public constant WRAPPED_COIN = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c; // BNB chain, wrapped BNB
 
     mapping(bytes => bool) public isPaid;
     mapping(address => bool) public isContract;
     mapping(address => address) public signer;
+    bool public isPaused = false;
 
 
     constructor() Ownable() {
@@ -39,12 +40,17 @@ contract ChainPay is Ownable, IChainPay {
         wrappedCoin = IWrapped(WRAPPED_COIN);
     }
 
+    modifier notPaused() {
+        require(!isPaused, "This contract is paused");
+        _;
+    }
+
 
     function paid(address payer, address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) private {
         emit PaymentDone(recipient, msg.sender, signature, data, token, amount);
         isPaid[signature] = true;
 
-        if (isContract[recipient]) {
+        if (isContract[recipient]) { // I didn't test this and just kind of hope it works right off the bat
             IChainPayReceiver(recipient).paid(payer, data);
         }
     }
@@ -88,6 +94,10 @@ contract ChainPay is Ownable, IChainPay {
     }
 
 
+    function pause() public onlyOwner {
+        isPaused = true;
+    }
+
     function contractToggle() public {
         isContract[msg.sender] = !isContract[msg.sender];
     }
@@ -98,7 +108,7 @@ contract ChainPay is Ownable, IChainPay {
     }
 
     // invoice in BNB, pays in BNB
-    function pay(address recipient, bytes memory signature, bytes memory data) public payable {
+    function pay(address recipient, bytes memory signature, bytes memory data) public payable notPaused {
         require(verifySignature(recipient, WRAPPED_COIN, msg.value, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
 
@@ -109,7 +119,7 @@ contract ChainPay is Ownable, IChainPay {
     }
 
     // invoice in token, pays in same token
-    function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) public {
+    function pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data) public notPaused {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
 
@@ -120,7 +130,7 @@ contract ChainPay is Ownable, IChainPay {
     }
 
     // invoice in token or BNB, pays in other token
-    function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) public {
+    function pay(address recipient, address expectedToken, uint256 expectedTokenAmount, address payingToken, uint256 payingTokenAmount, uint24 fee, bytes memory signature, bytes memory data) public notPaused {
         require(verifySignature(recipient, expectedToken, expectedTokenAmount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
 
@@ -147,7 +157,7 @@ contract ChainPay is Ownable, IChainPay {
     }
 
     // invoice in token, pays in BNB
-    function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) public payable {
+    function pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) public payable notPaused {
         require(verifySignature(recipient, token, amount, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
 
@@ -166,7 +176,7 @@ contract ChainPay is Ownable, IChainPay {
         }
     }
 
-    receive() external payable { 
+    receive() external payable notPaused { 
         require(msg.sender == WRAPPED_COIN);
     }
 }
