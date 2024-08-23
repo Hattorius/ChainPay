@@ -25,8 +25,6 @@ export type PayInput =
 			wallet: any; // ugly, I know
 	  };
 
-const WRAPPED_BNB = '0x4200000000000000000000000000000000000006';
-
 const pay = async (input: PayInput) => {
 	let { transaction, token, amount, chainpayContract, feeTier } = input;
 	if (typeof transaction === 'string') {
