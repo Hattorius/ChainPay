@@ -16,3 +16,6 @@ Shit I just remembered how little time I have left. Even though the deadline is 
 Heyyy!!! GOOD MORNING!!!! Ready for another day of just programming all day and not leaving my room??????
 - Hell yeah!
   - (said my alter ego, actually believing we can win this hackathon)
+
+
+I have a head ache. Been sleeping for the past few hours. Don't have much time left for this hackathon
