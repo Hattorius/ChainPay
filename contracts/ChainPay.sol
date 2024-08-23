@@ -2,12 +2,12 @@
 pragma solidity ^0.8.0;
 
 // Interfaces
-import "./IERC20.sol";
-import "./Ownable.sol";
-import "./ISwapRouter.sol";
-import "./IWrapped.sol";
-import "./TransferHelper.sol";
-import "./ECDSA.sol";
+import "./3rdparty/IERC20.sol";
+import "./3rdparty/Ownable.sol";
+import "./3rdparty/ISwapRouter.sol";
+import "./3rdparty/IWrapped.sol";
+import "./3rdparty/TransferHelper.sol";
+import "./3rdparty/ECDSA.sol";
 import "./interfaces/IChainPay.sol";
 import "./interfaces/IChainPayReceiver.sol";
 
