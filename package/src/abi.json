@@ -188,6 +188,19 @@
 	},
 	{
 		"inputs": [],
+		"name": "isPaused",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "owner",
 		"outputs": [
 			{
@@ -197,6 +210,13 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -381,45 +401,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "tokenIn",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "tokenOut",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amountIn",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amountOutMax",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint24",
-				"name": "fee",
-				"type": "uint24"
-			}
-		],
-		"name": "swap",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"inputs": [],
 		"name": "swapRouter",
 		"outputs": [
@@ -457,5 +438,9 @@
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]
