@@ -102,7 +102,10 @@ const isPaid = async (chianpayContract: `0x${string}`, signature: string) => {
 		args: [signature]
 	});
 
-	return result;
+	if (typeof result === 'boolean') {
+		return result;
+	}
+	return false;
 };
 
 export default {
