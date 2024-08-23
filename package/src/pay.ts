@@ -21,10 +21,10 @@ export type PayInput =
 			feeTier?: number;
 			chainpayContract: `0x${string}`;
 			type: 'viem';
-			wallet: WalletClient;
+			wallet: any; // ugly, I know
 	  };
 
-const WRAPPED_BNB = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c';
+const WRAPPED_BNB = '0x4200000000000000000000000000000000000006';
 
 const pay = async (input: PayInput) => {
 	let { transaction, token, amount, chainpayContract, feeTier } = input;

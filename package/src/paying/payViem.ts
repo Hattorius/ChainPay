@@ -1,11 +1,19 @@
-import { WalletClient } from 'viem';
+// this DOES NOT work
+// this DOES NOT work
+// this DOES NOT work
+// this DOES NOT work
+// this DOES NOT work
+// this DOES NOT work
+// this DOES NOT work
+
+
 import type { PaymentData } from '../types';
 import abi from '../abi.json';
 import { erc20Abi } from 'viem';
 import getPublicClient from '../getPublicClient';
 
 export interface PayViemInput {
-	wallet: WalletClient;
+	wallet: any; // ugly, I know
 	paymentData: PaymentData<typeof abi>;
 }
 

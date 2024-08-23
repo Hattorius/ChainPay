@@ -1,14 +1,20 @@
 import createTransaction from './createTransaction';
 import utils from './utils';
-import { CreateTransactionInput, TransactionType } from './types';
+import { CreateTransactionInput, TransactionType, PaymentData } from './types';
 import findPool from './findPool';
 import pay from './pay';
+import abi from './abi.json';
+import { erc20Abi } from 'viem';
+import isPaid from './isPaid';
 
-export { CreateTransactionInput, TransactionType };
+export { CreateTransactionInput, TransactionType, PaymentData };
 
 export default {
 	utils,
 	createTransaction,
 	findPool,
-	pay
+	pay,
+	abi,
+	erc20Abi,
+	isPaid
 };
