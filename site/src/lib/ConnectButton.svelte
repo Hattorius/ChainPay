@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { useAuth } from '../stores/auth/methods';
+	import { useAuth } from './stores/auth/methods';
 
 	const { connect } = useAuth();
 </script>

@@ -4,15 +4,15 @@
 	import type { TransactionType } from 'chainpay';
 	import chainpay from 'chainpay';
 	import type { TokenType } from '../../app';
-	import getToken from '$lib/getToken';
-	import tokens from '$lib/tokens';
+	import getToken from '$lib/scripts/getToken';
+	import tokens from '$lib/scripts/tokens';
 	import Wallet from '$lib/Wallet.svelte';
-	import ConnectButton from '$lib/CreatePaymentRequest/ConnectButton.svelte';
-	import ChangeNetworkButton from '$lib/CreatePaymentRequest/ChangeNetworkButton.svelte';
+	import ConnectButton from '$lib/ConnectButton.svelte';
+	import ChangeNetworkButton from '$lib/ChangeNetworkButton.svelte';
 	import Pay from './Pay.svelte';
 	import { onMount } from 'svelte';
 	import { publicClient } from '$lib/stores/auth/store';
-	import getPrice from '$lib/getPrice';
+	import getPrice from '$lib/scripts/getPrice';
 
 	export let transaction: TransactionType;
 

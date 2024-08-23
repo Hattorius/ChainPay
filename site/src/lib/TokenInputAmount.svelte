@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import parseNumericInput from './parseNumericInput';
+	import parseNumericInput from '$lib/scripts/parseNumericInput';
 	export let decimals: number;
 	let value = '';
 	const dispatch = createEventDispatcher();

@@ -1,6 +1,6 @@
 import tokens from '$lib/data/tokens.json';
 import pools from '$lib/data/pools.json';
-import type { TokenType } from '../app';
+import type { TokenType } from '../../app';
 
 const get = (address: string) => tokens.filter((t) => t.id === address)[0] as TokenType;
 const getAll = () => tokens as TokenType[];

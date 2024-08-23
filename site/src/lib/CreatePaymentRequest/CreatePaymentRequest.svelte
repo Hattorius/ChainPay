@@ -3,10 +3,10 @@
 	import type { TokenType } from '../../app';
 	import TokenInputAmount from '../TokenInputAmount.svelte';
 	import Wallet from '../Wallet.svelte';
-	import ConnectButton from './ConnectButton.svelte';
-	import ChangeNetworkButton from './ChangeNetworkButton.svelte';
+	import ConnectButton from '../ConnectButton.svelte';
+	import ChangeNetworkButton from '../ChangeNetworkButton.svelte';
 	import CreatePaymentRequestButton from './CreatePaymentRequestButton.svelte';
-	import tokens from '$lib/tokens';
+	import tokens from '$lib/scripts/tokens';
 
 	let toReceive: TokenType | null = null;
 	$: decimals = toReceive ? parseInt(toReceive.decimals) : 0;
