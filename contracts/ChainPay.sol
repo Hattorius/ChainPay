@@ -165,4 +165,8 @@ contract ChainPay is Ownable, IChainPay {
             require(sent, "Failed sending coins");
         }
     }
+
+    receive() external payable { 
+        require(msg.sender == WRAPPED_COIN);
+    }
 }
