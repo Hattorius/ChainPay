@@ -1,3 +1,17 @@
+const countLeadingZeros = (str: string) => {
+	let count = 0;
+
+	for (let i = 0; i < str.length; i++) {
+		if (str[i] === '0') {
+			count++;
+		} else {
+			break;
+		}
+	}
+
+	return count;
+};
+
 const parseNumericInput = (input: string, decimals: number) => {
 	input = input.replace(/,/g, '.');
 	const dotCount = input.split('.').length - 1;
@@ -22,16 +36,23 @@ const parseNumericInput = (input: string, decimals: number) => {
 	if (dotCount === 1) {
 		const [left, right] = input.split('.').map((v) => parseInt(v));
 		if (!isNaN(left) && isNaN(right)) {
+			if (input.charAt(input.length - 1) === '.') {
+				return `${left}.`;
+			}
 			return left.toString();
 		} else if (isNaN(left)) {
 			return '';
 		}
 
 		if (right.toString().length > decimals) {
-			return `${left}.${right.toString().slice(0, decimals)}`;
+			return `${left}.${'0'.repeat(countLeadingZeros(input.split('.')[1]))}${
+				right.toString().slice(0, decimals) !== '0' ? right.toString().slice(0, decimals) : ''
+			}`;
 		}
 
-		return `${left}.${right}`;
+		return `${left}.${'0'.repeat(countLeadingZeros(input.split('.')[1]))}${
+			right !== 0 ? right : ''
+		}`;
 	}
 
 	return '';

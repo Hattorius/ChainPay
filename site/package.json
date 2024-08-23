@@ -40,7 +40,7 @@
 	"dependencies": {
 		"@web3-onboard/core": "^2.17.0",
 		"@web3-onboard/injected-wallets": "^2.8.5",
-		"chainpay": "^0.0.17",
+		"chainpay": "^0.0.25",
 		"crypto-browserify": "^3.12.0",
 		"viem": "^0.3.13"
 	}

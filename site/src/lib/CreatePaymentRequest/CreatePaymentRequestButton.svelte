@@ -15,7 +15,7 @@
 				account: $walletAccount,
 				token: token.id,
 				amount: actualAmount,
-				data_string: ''
+				data_string: Date.now().toString()
 			});
 
 			if (res) {
