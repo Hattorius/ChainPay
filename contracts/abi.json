@@ -1,6 +1,17 @@
 [
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "contract ISwapRouter",
+				"name": "_swapRouter",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IWrapped",
+				"name": "_wrappedCoin",
+				"type": "address"
+			}
+		],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -114,32 +125,6 @@
 		],
 		"name": "PaymentDone",
 		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "PANCAKESWAP_V3_ROUTER_ADDRESS",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "WRAPPED_COIN",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	},
 	{
 		"inputs": [],

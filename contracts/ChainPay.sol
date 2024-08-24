@@ -71,11 +71,11 @@ contract ChainPay is Ownable, IChainPay {
         amountInUsed = swapRouter.exactOutputSingle(params);
 
         if (amountInUsed < amountIn) {
-            left = amountIn - amountInUsed;
+            uint256 left = amountIn - amountInUsed;
 
             if (tokenIn == address(wrappedCoin)) {
                 wrappedCoin.withdraw(left);
-                bool sent = payable(recipient).send(left);
+                bool sent = payable(msg.sender).send(left);
                 require(sent, "Failed sending coins");
             } else {
                 TransferHelper.safeTransfer(tokenIn, msg.sender, amountIn - amountInUsed);
@@ -119,10 +119,10 @@ contract ChainPay is Ownable, IChainPay {
 
     // invoice in BNB, pays in BNB
     function pay(address recipient, bytes memory signature, bytes memory data) public payable notPaused {
-        require(verifySignature(recipient, WRAPPED_COIN, msg.value, data, signature), "Payment invalid");
+        require(verifySignature(recipient, address(wrappedCoin), msg.value, data, signature), "Payment invalid");
         require(!isPaid[signature], "This has already been paid");
 
-        paid(msg.sender, recipient, WRAPPED_COIN, msg.value, signature, data);
+        paid(msg.sender, recipient, address(wrappedCoin), msg.value, signature, data);
 
         bool sent = payable(recipient).send(msg.value);
         require(sent, "Failed sending coins");
@@ -150,7 +150,7 @@ contract ChainPay is Ownable, IChainPay {
         swap(payingToken, expectedToken, payingTokenAmount, expectedTokenAmount, fee) - payingTokenAmount;
 
         // Send tokens to recipient, and if any left send those back to the payer
-        if (expectedToken != WRAPPED_COIN) {
+        if (expectedToken != address(wrappedCoin)) {
             bool success = IERC20(expectedToken).transfer(recipient, expectedTokenAmount);
             require(success, "Failed sending tokens");
         } else {
@@ -167,13 +167,13 @@ contract ChainPay is Ownable, IChainPay {
 
         wrappedCoin.deposit{ value: msg.value }();
         paid(msg.sender, recipient, token, amount, signature, data);
-        swap(WRAPPED_COIN, token, msg.value, amount, fee) - msg.value;
+        swap(address(wrappedCoin), token, msg.value, amount, fee) - msg.value;
 
         bool success = IERC20(token).transfer(recipient, amount);
         require(success, "Failed sending tokens");
     }
 
     receive() external payable notPaused { 
-        require(msg.sender == WRAPPED_COIN);
+        require(msg.sender == address(wrappedCoin));
     }
 }
