@@ -55,15 +55,15 @@ const dataToHash = (
 	recipient: string,
 	token: string,
 	amount: number | bigint,
-	data_string: string
+	data_raw: string | Uint8Array
 ) => {
-	const data = Array.from(toUtf8Bytes(data_string), (byte) =>
-		byte.toString(16).padStart(2, '0')
-	).join('');
+	const byte_data = typeof data_raw === 'string' ? toUtf8Bytes(data_raw) : data_raw;
+
+	const data = Array.from(byte_data, (byte) => byte.toString(16).padStart(2, '0')).join('');
 
 	const messageHash = solidityPackedKeccak256(
 		['address', 'address', 'uint256', 'bytes'],
-		[recipient, token, amount, toUtf8Bytes(data_string)]
+		[recipient, token, amount, byte_data]
 	);
 
 	return {

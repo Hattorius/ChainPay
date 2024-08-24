@@ -18,3 +18,11 @@ export class NotEncodedTransaction extends Error {
 		this.name = `Invalid encoded transaction: ${supposedEncodedTransaction}`;
 	}
 }
+
+export class NoDataGiven extends Error {
+	constructor() {
+		super('No data given!');
+		this.name =
+			"When creating a transaction you'll at least have to pass some data. Either `data_string` or `data_raw` has to be set";
+	}
+}

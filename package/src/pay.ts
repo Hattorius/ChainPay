@@ -1,4 +1,3 @@
-import { WalletClient } from 'viem';
 import { PaymentData, TransactionType } from './types';
 import utils from './utils';
 import abi from './abi.json';
