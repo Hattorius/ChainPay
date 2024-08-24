@@ -11,9 +11,9 @@ interacting with the ChainPay smart contract.
 
 ## Parameters
 
-| Name             | Type     | Description                                                              |
-| ---------------- | -------- | ------------------------------------------------------------------------ |
-| chainpayContract | `string` | Address of the ChainPay contract (`constants.CHAINPAY_CONTRACT_ADDRESS`) |
+| Name             | Type     | Description                                                                                                       |
+| ---------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| chainpayContract | `string` | Address of the ChainPay contract ([`constants.CHAINPAY_CONTRACT_ADDRESS`](./constants#chainpay_contract_address)) |
 
 ## Return value
 

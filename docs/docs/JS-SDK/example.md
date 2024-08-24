@@ -86,9 +86,9 @@ to hex), and the sign `messageHash`.
 ### Our widget (redirect)
 
 One of the simplest ways to allow your users to make a payment is by redirecting
-them to our page. The `TransactionType` object, returned when creating a
-transaction, includes a `pay` key. This `pay` key contains a URL where the user
-can be redirected to complete the payment.
+them to our page. The [`TransactionType`](./api/types#transactiontype) object,
+returned when creating a transaction, includes a `pay` key. This `pay` key
+contains a URL where the user can be redirected to complete the payment.
 
 ```ts
 import chainpay, { type TransactionType } from 'chainpay';

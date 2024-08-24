@@ -11,9 +11,9 @@ ChainPay smart contract, enabling payment of the specified amount.
 
 ## Parameters
 
-| Name  | Type       | Description                                                                        |
-| ----- | ---------- | ---------------------------------------------------------------------------------- |
-| input | `PayInput` | An object containing details such as the transaction, token for payment, and more. |
+| Name  | Type                           | Description                                                                        |
+| ----- | ------------------------------ | ---------------------------------------------------------------------------------- |
+| input | [`PayInput`](./types#payinput) | An object containing details such as the transaction, token for payment, and more. |
 
 ## Return value
 
@@ -23,7 +23,7 @@ any ERC20 token transfers before the payment can be processed.
 
 ## Return type
 
-`PaymentData<abi>`
+[`PaymentData<abi>`](./types#paymentdata)
 
 ### Example object
 

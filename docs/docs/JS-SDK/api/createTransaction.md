@@ -6,17 +6,18 @@ sidebar_position: 1
 
 The `createTransaction` function is the starting point for initiating a payment
 request or transaction within ChainPay. This function allows you to specify the
-token, amount, and recipient, and it returns a `TransactionType` object
-containing all the necessary information to process the transaction
+token, amount, and recipient, and it returns a
+[`TransactionType`](./types#transactiontype) object containing all the necessary
+information to process the transaction
 
 [View examples here](./../example#creating-a-transaction) for detailed usage
 scenarios.
 
 ## Parameters
 
-| Name  | Type                     | Description                                                            |
-| ----- | ------------------------ | ---------------------------------------------------------------------- |
-| input | `CreateTransactionInput` | An object containing details such as the token, amount, and recipient. |
+| Name  | Type                                                       | Description                                                            |
+| ----- | ---------------------------------------------------------- | ---------------------------------------------------------------------- |
+| input | [`CreateTransactionInput`](./types#createtransactioninput) | An object containing details such as the token, amount, and recipient. |
 
 ## Return value
 
@@ -26,7 +27,7 @@ verify, or display the transaction.
 
 ## Return type
 
-`TransactionType`
+[`TransactionType`](./types#transactiontype)
 
 ### Example object
 

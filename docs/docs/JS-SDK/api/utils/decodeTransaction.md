@@ -4,8 +4,8 @@ sidebar_position: 1
 
 # decodeTransaction
 
-The `decodeTransaction` function generates a `TransactionType` from an encoded
-transaction.
+The `decodeTransaction` function generates a
+[`TransactionType`](./../types#transactiontype) from an encoded transaction.
 
 [View an example here](./../../example#our-widget-redirect).
 
@@ -23,7 +23,7 @@ displaying the transaction.
 
 ## Return type
 
-`TransactionType`
+[`TransactionType`](./../types#transactiontype)
 
 ### Example object
 
