@@ -70,17 +70,17 @@ contract ChainPay is Ownable, IChainPay {
 
         amountInUsed = swapRouter.exactOutputSingle(params);
 
-        if (amountInUsed < amountIn) {
-            uint256 left = amountIn - amountInUsed;
+        // if (amountInUsed < amountIn) {
+        //     uint256 left = amountIn - amountInUsed;
 
-            if (tokenIn == address(wrappedCoin)) {
-                wrappedCoin.withdraw(left);
-                bool sent = payable(msg.sender).send(left);
-                require(sent, "Failed sending coins");
-            } else {
-                TransferHelper.safeTransfer(tokenIn, msg.sender, amountIn - amountInUsed);
-            }
-        }
+        //     if (tokenIn == address(wrappedCoin)) {
+        //         wrappedCoin.withdraw(left);
+        //         bool sent = payable(msg.sender).send(left);
+        //         require(sent, "Failed sending coins");
+        //     } else {
+        //         TransferHelper.safeTransfer(tokenIn, msg.sender, amountIn - amountInUsed);
+        //     }
+        // }
     }
 
     function getMessageHash(address recipient, address token, uint256 amount, bytes memory data) internal pure returns (bytes32) {
@@ -167,13 +167,21 @@ contract ChainPay is Ownable, IChainPay {
 
         wrappedCoin.deposit{ value: msg.value }();
         paid(msg.sender, recipient, token, amount, signature, data);
-        swap(address(wrappedCoin), token, msg.value, amount, fee) - msg.value;
+        swap(address(wrappedCoin), token, msg.value, amount, fee);
 
-        bool success = IERC20(token).transfer(recipient, amount);
-        require(success, "Failed sending tokens");
+        // bool success = IERC20(token).transfer(recipient, amount);
+        // require(success, "Failed sending tokens");
     }
 
     receive() external payable notPaused { 
         require(msg.sender == address(wrappedCoin));
     }
 }
+
+	// 359802541179664n <- bnb
+	// 0x7982985F05a9dabD3F26dC81CB161f440BE48eE5 <- recipient
+	// 0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82 <- token to receive
+	// 100000000000000000
+	// 3000
+	// 0x061a2611e8ce965d04a47a2ac739acd1a1a6349edb1ef5c15bc15ca0b33b9bff06c44dc481872245eefafbfb2f3f82a88aac703ea085a4fab1390c351e01731d1c
+	// 0x31373234353335333636363231

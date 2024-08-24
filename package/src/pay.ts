@@ -38,14 +38,17 @@ const pay = async (input: PayInput) => {
 		};
 	};
 
-	if (transaction.token === constants.WRAPPED_BNB && token === constants.WRAPPED_BNB) {
+	if (
+		transaction.token.toLowerCase() === constants.WRAPPED_BNB.toLowerCase() &&
+		token.toLowerCase() === constants.WRAPPED_BNB.toLowerCase()
+	) {
 		// invoice in BNB, pays in BNB
 		// pay(address recipient, bytes memory signature, bytes memory data) payable
 		data = {
 			value: BigInt(transaction.amount),
 			args: [transaction.recipient, transaction.signature, transaction.data]
 		};
-	} else if (transaction.token === token) {
+	} else if (transaction.token.toLowerCase() === token.toLowerCase()) {
 		// invoice in token, pays in same token
 		//  pay(address recipient, address token, uint256 amount, bytes memory signature, bytes memory data)
 		data = {
@@ -61,7 +64,10 @@ const pay = async (input: PayInput) => {
 				amount: BigInt(transaction.amount)
 			}
 		};
-	} else if (transaction.token !== constants.WRAPPED_BNB && token === constants.WRAPPED_BNB) {
+	} else if (
+		transaction.token.toLowerCase() !== constants.WRAPPED_BNB.toLowerCase() &&
+		token.toLowerCase() === constants.WRAPPED_BNB.toLowerCase()
+	) {
 		// invoice in token, pays in BNB
 		// pay(address recipient, address token, uint256 amount, uint24 fee, bytes memory signature, bytes memory data) payable
 		if (!feeTier) {

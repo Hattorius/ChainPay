@@ -126,7 +126,7 @@
 		Waiting for transaction
 	{:else if paid}
 		Paid
-	{:else if !approved && token !== chainpay.constants.WRAPPED_BNB}
+	{:else if !approved && token.toLowerCase() !== chainpay.constants.WRAPPED_BNB.toLowerCase()}
 		Approve {symbol}
 	{:else}
 		<slot />
