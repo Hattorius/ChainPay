@@ -13,7 +13,10 @@
 				payments on BSC, with more chains coming soon.
 			</p>
 
-			<div class="justify-end w-full mt-6 hidden sm:flex">
+			<div class="justify-end w-full mt-6 hidden sm:flex items-center gap-4">
+				<a href="https://github.com/Hattorius/ChainPay" target="_blank" class="h-8">
+					<img src="/github.svg" class="h-8" alt="Github link" />
+				</a>
 				<button class="hover:bg-gray-900 py-3 px-5 transition border"> Developer docs </button>
 			</div>
 		</div>
@@ -27,6 +30,12 @@
 
 	<div class="justify-center w-full mt-8 flex sm:hidden">
 		<DevelopersButton />
+	</div>
+
+	<div class="justify-center w-full mt-2 flex sm:hidden">
+		<a href="https://github.com/Hattorius/ChainPay" target="_blank" class="h-8">
+			<img src="/github.svg" class="h-8" alt="Github link" />
+		</a>
 	</div>
 </div>
 
