@@ -91,11 +91,14 @@
 
 			loading = false;
 			paid = true;
-			
+
 			if (window.parent) {
-				window.parent.postMessage({
-					...transaction
-				}, '*');
+				window.parent.postMessage(
+					{
+						...transaction
+					},
+					'*'
+				);
 			}
 		}
 	};

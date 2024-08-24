@@ -17,7 +17,7 @@
 				<a href="https://github.com/Hattorius/ChainPay" target="_blank" class="h-8">
 					<img src="/github.svg" class="h-8" alt="Github link" />
 				</a>
-				<button class="hover:bg-gray-900 py-3 px-5 transition border"> Developer docs </button>
+				<DevelopersButton />
 			</div>
 		</div>
 
