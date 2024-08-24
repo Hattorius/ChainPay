@@ -209,10 +209,14 @@ original signature.
 ```ts
 import chainpay from 'chainpay';
 
-const paid = chainpay.isPaid(
+const paid: boolean = chainpay.isPaid(
   chainpay.constants.CHAINPAY_CONTRACT_ADDRESS,
   signature
 );
-// The signature can be retrieved by saving it yourself or extracting it from `transaction.signature`.
-// If extracting from the `transaction`, ensure the signature belongs to you and the transaction data is accurate.
 ```
+
+- The signature can either be saved on your end when the transaction is created
+  or extracted from the `transaction.signature` field.
+- If you extract the signature from the transaction, ensure that the signature
+  is indeed yours and that the transaction data is accurate before proceeding
+  with the verification.
