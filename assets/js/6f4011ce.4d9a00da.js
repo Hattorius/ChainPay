@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[445],{5714:(s,c,n)=>{n.r(c),n.d(c,{default:()=>d});var t=n(6347),u=n(4848);function d(){return(0,u.jsx)(t.rd,{to:"/ChainPay/docs/introduction"})}}}]);
