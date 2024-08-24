@@ -12,6 +12,7 @@ import { NotEncodedTransaction } from './errors';
 import pools from './pools.json';
 import getPublicClient from './getPublicClient';
 import abi from './abi.json';
+import createWidget from './createWidget';
 
 const decodeTransaction = (input: string) => {
 	const throwError = () => {
@@ -47,7 +48,11 @@ const decodeTransaction = (input: string) => {
 		amount,
 		recipient,
 		signature,
-		encoded: input
+		encoded: input,
+		pay: `https://chainpay.dev/pay/${input}`,
+		widgetUrl: `https://chainpay.dev/pay/${input}?embed`,
+		widget: (el: string | HTMLIFrameElement) =>
+			createWidget(`https://chainpay.dev/pay/${input}?embed`, el)
 	} as TransactionType;
 };
 
