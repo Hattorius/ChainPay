@@ -1,5 +1,5 @@
 <script lang="ts">
-	import getHeadingsAndSubheadings from "$lib/scripts/getHeadingsAndSubheadings";
+	import getHeadingsAndSubheadings from '$lib/scripts/getHeadingsAndSubheadings';
 
 	let content: HTMLDivElement;
 	$: headers = content && getHeadingsAndSubheadings(content);
@@ -11,14 +11,14 @@
 	<div class="flex-1">
 		<div class="max-w-screen-lg w-full mx-auto flex gap-4">
 			<div>
-                {#if headers}
-                    {#each headers as header}
-                        <p class="text-lg pb-0.5">{header.h2}</p>
-                        {#each header.h3 as subHeader}
-                            <p class="pl-4">{subHeader}</p>
-                        {/each}
-                    {/each}
-                {/if}
+				{#if headers}
+					{#each headers as header}
+						<p class="text-lg pb-0.5">{header.h2}</p>
+						{#each header.h3 as subHeader}
+							<p class="pl-4">{subHeader}</p>
+						{/each}
+					{/each}
+				{/if}
 			</div>
 
 			<div class="flex-1" bind:this={content}>
