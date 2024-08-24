@@ -26,3 +26,9 @@ export class NoDataGiven extends Error {
 			"When creating a transaction you'll at least have to pass some data. Either `data_string` or `data_raw` has to be set";
 	}
 }
+
+export class ElementNotFound extends Error {
+	constructor(el: string) {
+		super(`Could not find element "${el}"`);
+	}
+}

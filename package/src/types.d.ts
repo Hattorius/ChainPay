@@ -15,6 +15,9 @@ export type TransactionType = {
 	recipient: string;
 	signature: string;
 	encoded: string;
+	pay: string;
+	widgetUrl: string;
+	widget: (el: string | HTMLIFrameElement) => Promise<TransactionType>;
 };
 
 export type PaymentData<T> = {

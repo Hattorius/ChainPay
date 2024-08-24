@@ -2,6 +2,7 @@ import { CreateTransactionInput, TransactionType } from './types';
 import { isEthersInput, signMessageEthers } from './signing/signMessageEthers';
 import { isViemInput, signMessageViem } from './signing/signMessageViem';
 import safeBase64 from './safeBase64';
+import createWidget from './createWidget';
 
 const createTransaction = async (input: CreateTransactionInput) => {
 	let data, signature, recipient;
@@ -13,6 +14,7 @@ const createTransaction = async (input: CreateTransactionInput) => {
 	}
 
 	if (!data || !signature || !recipient) return undefined;
+	const encoded = safeBase64.encode(`${recipient}${input.token}${signature}${input.amount}${data}`);
 
 	return {
 		data: data,
@@ -20,7 +22,11 @@ const createTransaction = async (input: CreateTransactionInput) => {
 		amount: input.amount,
 		recipient,
 		signature: signature,
-		encoded: safeBase64.encode(`${recipient}${input.token}${signature}${input.amount}${data}`)
+		encoded,
+		pay: `https://chainpay.dev/pay/${encoded}`,
+		widgetUrl: `https://chainpay.dev/pay/${encoded}?embed`,
+		widget: (el: string | HTMLIFrameElement) =>
+			createWidget(`https://chainpay.dev/pay/${encoded}?embed`, el)
 	} as TransactionType;
 };
 
