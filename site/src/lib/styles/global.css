@@ -5,3 +5,21 @@
 * {
 	color: #fff;
 }
+
+.rtl {
+	direction: rtl;
+}
+
+.ltr {
+	direction: ltr;
+}
+
+@media (min-width: 640px) {
+	.sm\:rtl {
+		direction: rtl;
+	}
+
+	.sm\:ltr {
+		direction: ltr;
+	}
+}
