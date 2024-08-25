@@ -24,7 +24,7 @@ contract ChainPay is Ownable, IChainPay {
         uint256 amount
     );
     
-    ISwapRouter public immutable swapRouter; // 0x13f4EA83D0bd40E75C8222255bc855a974568Dd4
+    ISwapRouter public immutable swapRouter; // 0x1b81D678ffb9C0263b24A97847620C99d213eB14
     IWrapped public immutable wrappedCoin; // 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
 
     mapping(bytes => bool) public isPaid;
@@ -70,17 +70,17 @@ contract ChainPay is Ownable, IChainPay {
 
         amountInUsed = swapRouter.exactOutputSingle(params);
 
-        // if (amountInUsed < amountIn) {
-        //     uint256 left = amountIn - amountInUsed;
+        if (amountInUsed < amountIn) {
+            uint256 left = amountIn - amountInUsed;
 
-        //     if (tokenIn == address(wrappedCoin)) {
-        //         wrappedCoin.withdraw(left);
-        //         bool sent = payable(msg.sender).send(left);
-        //         require(sent, "Failed sending coins");
-        //     } else {
-        //         TransferHelper.safeTransfer(tokenIn, msg.sender, amountIn - amountInUsed);
-        //     }
-        // }
+            if (tokenIn == address(wrappedCoin)) {
+                wrappedCoin.withdraw(left);
+                bool sent = payable(msg.sender).send(left);
+                require(sent, "Failed sending coins");
+            } else {
+                TransferHelper.safeTransfer(tokenIn, msg.sender, amountIn - amountInUsed);
+            }
+        }
     }
 
     function getMessageHash(address recipient, address token, uint256 amount, bytes memory data) internal pure returns (bytes32) {
@@ -169,8 +169,8 @@ contract ChainPay is Ownable, IChainPay {
         paid(msg.sender, recipient, token, amount, signature, data);
         swap(address(wrappedCoin), token, msg.value, amount, fee);
 
-        // bool success = IERC20(token).transfer(recipient, amount);
-        // require(success, "Failed sending tokens");
+        bool success = IERC20(token).transfer(recipient, amount);
+        require(success, "Failed sending tokens");
     }
 
     receive() external payable notPaused { 

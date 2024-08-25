@@ -96,11 +96,13 @@
 					on:click={() => select(token)}
 				>
 					<div class="w-8 h-8">
-						<ImageLazyLoad
-							src={`https://tokens.pancakeswap.finance/images/${getAddress(token.id)}.png`}
-							alt={token.name}
-							root={container}
-						/>
+						{#key token.name}
+							<ImageLazyLoad
+								src={`https://tokens.pancakeswap.finance/images/${getAddress(token.id)}.png`}
+								alt={token.name}
+								root={container}
+							/>
+						{/key}
 					</div>
 
 					<p class="flex-1">
