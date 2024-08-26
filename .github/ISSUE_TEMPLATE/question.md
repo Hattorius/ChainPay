@@ -1,7 +1,7 @@
 ---
 name: Question
 about: Ask a question about the ChainPay protocol
-title: "[Question] Brief description of your question"
+title: "Brief description of your question"
 labels: question
 assignees: ''
 ---

@@ -1,7 +1,7 @@
 ---
 name: Discussion
 about: Start a discussion on possible changes, ideas, or theories about the ChainPay protocol
-title: "[Discussion] Brief description of the topic"
+title: "Brief description of the topic"
 labels: discussion
 assignees: ''
 ---

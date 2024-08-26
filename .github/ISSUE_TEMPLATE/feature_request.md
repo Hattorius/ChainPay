@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Request a new feature or enhancement for the ChainPay protocol
-title: "[Feature] Brief description of the requested feature"
+title: "Brief description of the requested feature"
 labels: enhancement
 assignees: ''
 ---

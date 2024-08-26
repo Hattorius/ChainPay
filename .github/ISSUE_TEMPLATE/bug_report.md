@@ -1,7 +1,7 @@
 ---
 name: Bug Report
 about: Report a bug for the ChainPay protocol
-title: "[BUG] Brief description of the bug"
+title: "Brief description of the bug"
 labels: bug
 assignees: ''
 ---
