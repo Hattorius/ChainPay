@@ -313,7 +313,7 @@
 			<img src="/github.svg" class="h-12" alt="Github link" />
 		</a>
 
-		<a href="TODO: CREATE ONE" target="_blank">
+		<a href="https://discord.gg/2MqVeKMPpr" target="_blank">
 			<img src="/discord.svg" class="h-12" alt="Discord link" />
 		</a>
 	</div>
