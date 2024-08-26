@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: https://github.com/Hattorius/ChainPay/issues/new?template=bug_report.md
+    about: Report a bug with the ChainPay protocol
+  - name: Feature Request
+    url: https://github.com/Hattorius/ChainPay/issues/new?template=feature_request.md
+    about: Request a new feature for ChainPay
+  - name: Question
+    url: https://github.com/Hattorius/ChainPay/issues/new?template=question.md
+    about: Ask a question related to the ChainPay protocol
+  - name: Discussion
+    url: https://github.com/Hattorius/ChainPay/issues/new?template=discussion.md
+    about: Start a discussion about the ChainPay protocol
