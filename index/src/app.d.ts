@@ -1,5 +1,8 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
+
+import * as THREE from 'three';
+
 declare global {
 	namespace App {
 		interface Platform {
@@ -8,6 +11,17 @@ declare global {
 			ctx: ExecutionContext;
 		}
 	}
+
+	interface Window {
+		three: typeof THREE;
+	}
 }
 
-export {};
+type TokenType = {
+	decimals: string;
+	id: string;
+	name: string;
+	symbol: string;
+};
+
+export { TokenType };
