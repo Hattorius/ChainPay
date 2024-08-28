@@ -4,8 +4,6 @@
 	import { createEventDispatcher, onMount, tick } from 'svelte';
 	import type { TokenType } from '../app';
 
-	import P from './P.svelte';
-
 	export let tokens: TokenType[];
 
 	let wrapper: HTMLDivElement;
@@ -98,9 +96,9 @@
 						/>
 					</div>
 
-					<P>
+					<p>
 						{selected.name} ({selected.symbol})
-					</P>
+					</p>
 				</div>
 			{/if}
 		</div>
@@ -123,9 +121,9 @@
 							{/key}
 						</div>
 
-						<P>
+						<p>
 							{token.name} ({token.symbol})
-						</P>
+						</p>
 					</div>
 				{/each}
 			</div>

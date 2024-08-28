@@ -3,7 +3,6 @@
 	import { walletAccount, walletClient } from '$lib/web3/store';
 	import type { TokenType } from '../../../app';
 	import { parseUnits } from 'viem';
-	import ButtonSecondary from '$lib/ButtonSecondary.svelte';
 
 	export let token: TokenType | null;
 	export let amount: number;
@@ -27,10 +26,10 @@
 	}
 </script>
 
-<ButtonSecondary on:click={sign}>
+<button class="secondary" on:click={sign}>
 	{#if token && amount >= 0}
 		Create payment request
 	{:else}
 		Select a token and amount
 	{/if}
-</ButtonSecondary>
+</button>

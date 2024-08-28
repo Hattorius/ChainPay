@@ -1,10 +1,5 @@
 <script lang="ts">
-	import ButtonPrimary from '$lib/ButtonPrimary.svelte';
-	import ButtonSecondary from '$lib/ButtonSecondary.svelte';
-	import H1 from '$lib/H1.svelte';
-	import H3 from '$lib/H3.svelte';
 	import tokens from '$lib/scripts/tokens';
-	import Subtitle from '$lib/Subtitle.svelte';
 	import TokenInputAmount from '$lib/TokenInputAmount.svelte';
 	import TokenPicker from '$lib/TokenPicker.svelte';
 	import ChangeNetworkButton from '$lib/web3/actions/ChangeNetworkButton.svelte';
@@ -42,23 +37,23 @@
 
 <div class="hero">
 	<div class="left">
-		<H1>ChainPay</H1>
+		<h1>ChainPay</h1>
 
-		<Subtitle>
+		<subtitle>
 			Effortless Crypto Payments,<br />
 			In Any Token, Your Way
-		</Subtitle>
+		</subtitle>
 
 		<div class="holder">
 			<a href="https://hattorius.github.io/ChainPay" target="_blank">
-				<ButtonPrimary>Developer docs</ButtonPrimary>
+				<button>Developer docs</button>
 			</a>
 		</div>
 	</div>
 
 	<div class="right">
 		<div class="card">
-			<H3>Create payment request</H3>
+			<h3>Create payment request</h3>
 
 			<div>
 				<TokenPicker tokens={tokens.getAll()} on:change={(e) => (toReceive = e.detail)} />
