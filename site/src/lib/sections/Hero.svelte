@@ -48,6 +48,14 @@
 			<a href="https://hattorius.github.io/ChainPay" target="_blank">
 				<button>Developer docs</button>
 			</a>
+
+			<a href="https://github.com/Hattorius/ChainPay" target="_blank">
+				<img src="/github.svg" alt="Github repository" />
+			</a>
+
+			<a href="https://discord.gg/2MqVeKMPpr" target="_blank">
+				<img src="/discord.svg" alt="Discord guild" />
+			</a>
 		</div>
 	</div>
 
@@ -125,6 +133,14 @@
 
 	div.holder {
 		margin-top: 38px;
+
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+
+		img {
+			width: 32px;
+		}
 	}
 
 	div.card {
