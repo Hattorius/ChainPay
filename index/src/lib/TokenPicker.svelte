@@ -219,4 +219,16 @@
 		background: rgba(170, 114, 206, 0.12);
 		transition: 150ms;
 	}
+
+	@media screen and (max-width: 450px) {
+		div.relative {
+			width: 320px;
+		}
+	}
+
+	@media screen and (max-width: 420px) {
+		div.relative {
+			width: 280px;
+		}
+	}
 </style>

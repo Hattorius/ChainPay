@@ -78,12 +78,14 @@
 
 <style lang="scss">
 	div.hero {
-		max-width: 1024px;
+		max-width: 1180px;
+		box-sizing: border-box;
 		width: 100%;
 		margin-top: 65px;
 		margin-left: auto;
 		margin-right: auto;
 		display: flex;
+		justify-content: space-between;
 		border-radius: 20px;
 		background: rgba(217, 217, 217, 0.03);
 		padding: 80px;
@@ -106,10 +108,6 @@
 		* {
 			z-index: 3;
 		}
-	}
-
-	div.left {
-		flex: 1;
 	}
 
 	div.canvas {
@@ -141,6 +139,30 @@
 			&:last-child {
 				padding-top: 40px;
 			}
+		}
+	}
+
+	@media screen and (max-width: 1220px) {
+		div.hero {
+			margin-top: 1rem;
+			width: calc(100% - 2rem);
+		}
+	}
+
+	@media screen and (max-width: 880px) {
+		div.hero {
+			flex-direction: column;
+			gap: 50px;
+
+			div.holder {
+				display: none;
+			}
+		}
+	}
+
+	@media screen and (max-width: 430px) {
+		div.hero {
+			padding: 20px;
 		}
 	}
 </style>

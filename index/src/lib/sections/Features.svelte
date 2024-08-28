@@ -26,7 +26,6 @@
 			margin: 40px auto 0 auto;
 			border-radius: 20px;
 			border: 2px solid rgba(170, 114, 206, 0.12);
-			height: 170px;
 
 			display: flex;
 			justify-content: space-evenly;
@@ -42,6 +41,31 @@
 				width: 2px;
 				height: 100%;
 			}
+		}
+	}
+
+	@media screen and (max-width: 1460px) {
+		div.features > div {
+			width: calc(100% - 2rem) !important;
+		}
+	}
+
+	@media screen and (max-width: 1120px) {
+		div.features > div:not(.wrapper) {
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-items: center;
+		}
+
+		:global(div.features > div:not(.wrapper) > div:nth-child(even)) {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 430px) {
+		div.features {
+			padding-top: 40px;
+			padding-bottom: 40px;
 		}
 	}
 </style>

@@ -111,4 +111,10 @@
 	img {
 		transition: 150ms;
 	}
+
+	@media screen and (max-width: 600px) {
+		div.case {
+			width: calc(100% - 5rem);
+		}
+	}
 </style>

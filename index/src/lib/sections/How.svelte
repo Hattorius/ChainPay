@@ -22,12 +22,32 @@
 		max-width: 890px;
 		width: 100%;
 		margin: 70px auto;
+		padding: 0 1rem;
 
 		display: flex;
 		justify-content: space-between;
 
 		:global(ul) {
 			margin-top: 40px;
+		}
+	}
+
+	@media screen and (max-width: 950px) {
+		div.how {
+			flex-direction: column;
+			align-items: center;
+			gap: 50px;
+			width: calc(100% - 2rem);
+		}
+
+		img {
+			width: calc(100% - 2rem);
+		}
+	}
+
+	@media screen and (max-width: 430px) {
+		div.how {
+			margin: 40px auto;
 		}
 	}
 </style>

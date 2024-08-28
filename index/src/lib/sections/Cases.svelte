@@ -120,7 +120,7 @@
 	</Case>
 </div>
 
-<style>
+<style lang="scss">
 	div.cases {
 		width: 100%;
 		padding: 70px 0;
@@ -134,5 +134,11 @@
 
 	h3 {
 		margin-top: 10px;
+	}
+
+	@media screen and (max-width: 430px) {
+		div.cases {
+			padding-top: 40px;
+		}
 	}
 </style>

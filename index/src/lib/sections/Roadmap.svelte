@@ -232,4 +232,26 @@
 			}
 		}
 	}
+
+	@media screen and (max-width: 869px) {
+		div.heading > .right {
+			display: none;
+		}
+
+		.card-content {
+			overflow-x: scroll !important;
+		}
+	}
+
+	@media screen and (max-width: 535px) {
+		div.roadmap {
+			padding: 20px;
+		}
+	}
+
+	@media screen and (max-width: 430px) {
+		div.roadmap > div > div.card {
+			padding: 15px;
+		}
+	}
 </style>
