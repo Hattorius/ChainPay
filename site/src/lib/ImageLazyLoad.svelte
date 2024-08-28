@@ -33,3 +33,15 @@
 <div class="w-full h-full" bind:this={container}>
 	<img src={setSrc} {alt} on:error={() => (setSrc = '/question.png')} />
 </div>
+
+<style>
+	div {
+		width: 100%;
+		height: 100%;
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+	}
+</style>

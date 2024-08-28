@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vitest/config';
+import commonjs from 'vite-plugin-commonjs';
+import { defineConfig } from 'vite';
 
 import nodePolyfills from 'rollup-plugin-polyfill-node';
 
@@ -9,6 +10,7 @@ const development = MODE === 'development';
 export default defineConfig({
 	plugins: [
 		sveltekit(),
+		commonjs(),
 		development &&
 			nodePolyfills({
 				include: ['node_modules/**/*.js', new RegExp('node_modules/.vite/.*js')]
@@ -26,21 +28,9 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			crypto: 'crypto-browserify',
-			stream: 'stream-browserify',
-			assert: 'assert'
+			'intl-messageformat': 'intl-messageformat/lib',
+			'@formatjs/icu-messageformat-parser': '@formatjs/icu-messageformat-parser/lib',
+			'@formatjs/icu-skeleton-parser': '@formatjs/icu-skeleton-parser/lib'
 		}
-	},
-	build: {
-		rollupOptions: {
-			external: ['@web3-onboard/*'],
-			plugins: [nodePolyfills()]
-		},
-		commonjsOptions: {
-			transformMixedEsModules: true
-		}
-	},
-	test: {
-		include: ['src/**/*.{test,spec}.{js,ts}']
 	}
 });
