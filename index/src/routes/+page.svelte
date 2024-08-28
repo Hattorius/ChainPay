@@ -5,6 +5,7 @@
 	import Hero from '$lib/sections/Hero.svelte';
 	import How from '$lib/sections/How.svelte';
 	import Info from '$lib/sections/Info.svelte';
+	import Roadmap from '$lib/sections/Roadmap.svelte';
 	import { onMount } from 'svelte';
 
 	import * as THREE from 'three';
@@ -91,6 +92,8 @@
 		<button>Developer docs</button>
 	</a>
 </DevBg>
+
+<Roadmap />
 
 <style>
 	.info-text {
