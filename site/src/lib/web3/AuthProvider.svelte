@@ -18,7 +18,7 @@
 		return {
 			id: key,
 			label: chain.name,
-			rpcUrl: chain.rpcUrls.public.http[0]
+			rpcUrl: chain.rpcUrls.default.http[0]
 		};
 	});
 

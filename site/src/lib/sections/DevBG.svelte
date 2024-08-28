@@ -1,20 +1,9 @@
 <script lang="ts">
-	import PayWidget from '$lib/PayWidget.svelte';
+	import Info from './Info.svelte';
 
-	import type { TransactionType } from 'chainpay';
 	import { onMount } from 'svelte';
 
 	import CELLS from 'vanta/dist/vanta.cells.min';
-
-	export let data:
-		| {
-				success: false;
-		  }
-		| {
-				success: true;
-				embed: boolean;
-				transactionDetails: TransactionType;
-		  };
 
 	let bg: HTMLDivElement;
 
@@ -35,29 +24,20 @@
 	});
 </script>
 
-<div class="bg" bind:this={bg} />
+<div>
+	<Info>
+		<slot />
+	</Info>
 
-<div class="content">
-	{#if data.success}
-		<PayWidget transaction={data.transactionDetails} />
-	{/if}
+	<div class="canvas" bind:this={bg} />
 </div>
 
 <style lang="scss">
-	div.bg {
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 1;
-		background: transparent;
-		pointer-events: none;
-		width: 100%;
-		height: 100%;
-	}
+	div {
+		background: #1d263b;
+		overflow: hidden;
+		position: relative;
 
-	div.content {
 		&::before {
 			content: '';
 			position: absolute;
@@ -69,5 +49,23 @@
 			pointer-events: none;
 			z-index: 2;
 		}
+
+		:global(*) {
+			z-index: 3;
+			position: relative;
+		}
+	}
+
+	div.canvas {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		background: transparent;
+		pointer-events: none;
+		width: 100%;
+		height: 100%;
 	}
 </style>

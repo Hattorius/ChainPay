@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { walletAccount, walletClient } from '$lib/stores/auth/store';
-	import { onMount } from 'svelte';
-	import AuthProvider from './stores/auth/AuthProvider.svelte';
-	import { Chains } from './stores/auth/types';
+	import { walletAccount, walletClient } from './store';
+	import { onMount, tick } from 'svelte';
+	import AuthProvider from './AuthProvider.svelte';
+	import { Chains } from './types';
 
 	let isBsc = false;
 	let show = false;
@@ -21,7 +21,10 @@
 	}
 
 	onMount(() => {
-		show = true;
+		(async () => {
+			await tick();
+			show = true;
+		})();
 	});
 </script>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import chainpay from 'chainpay';
-	import { walletAccount, walletClient } from '../stores/auth/store';
-	import type { TokenType } from '../../app';
+	import { walletAccount, walletClient } from '$lib/web3/store';
+	import type { TokenType } from '../../../app';
 	import { parseUnits } from 'viem';
 
 	export let token: TokenType | null;
@@ -26,6 +26,10 @@
 	}
 </script>
 
-<button class="border mt-6 w-full h-10 hover:bg-gray-900 transition" on:click={() => sign()}
-	>Create payment request</button
->
+<button class="secondary" on:click={sign}>
+	{#if token && amount >= 0}
+		Create payment request
+	{:else}
+		Select a token and amount
+	{/if}
+</button>

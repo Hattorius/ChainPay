@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'ChainPay - docs',
   tagline: 'On chain payments on the BNB chain',
-  url: 'https://hattorius.github.io/',
-  baseUrl: '/ChainPay',
+  url: 'https://docs.chainpay.dev',
+  baseUrl: '/',
   organizationName: 'Hattorius',
   projectName: 'ChainPay',
   onBrokenLinks: 'throw',

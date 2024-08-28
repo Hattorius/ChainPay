@@ -23,9 +23,12 @@ const getPaired = (address: string) =>
 		)
 	).map((addr) => get(addr));
 
+const getByAddress = (address: string) => tokens.filter((token) => token.id === address)[0];
+
 export default {
 	get,
 	getAll,
 	getPools,
-	getPaired
+	getPaired,
+	getByAddress
 };

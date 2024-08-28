@@ -12,10 +12,18 @@
 	};
 </script>
 
-<input
-	type="text"
-	class="bg-black border w-full h-10 p-2"
-	on:keyup={handle}
-	bind:value
-	placeholder="Ex. 5.55"
-/>
+<input type="text" on:keyup={handle} bind:value placeholder="Ex. 5.55" />
+
+<style lang="scss">
+	@media screen and (max-width: 450px) {
+		input {
+			width: 320px;
+		}
+	}
+
+	@media screen and (max-width: 420px) {
+		input {
+			width: 280px;
+		}
+	}
+</style>
