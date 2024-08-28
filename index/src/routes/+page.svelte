@@ -1,4 +1,5 @@
 <script>
+	import Cases from '$lib/sections/Cases.svelte';
 	import Features from '$lib/sections/Features.svelte';
 	import Hero from '$lib/sections/Hero.svelte';
 	import How from '$lib/sections/How.svelte';
@@ -73,6 +74,8 @@
 
 	<p>All on chain</p>
 </How>
+
+<Cases />
 
 <style>
 	.info-text {

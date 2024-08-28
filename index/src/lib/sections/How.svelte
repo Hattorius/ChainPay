@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ImageLazyLoad from '$lib/ImageLazyLoad.svelte';
 	import { onMount } from 'svelte';
 
 	export let image;
@@ -14,7 +13,7 @@
 	</div>
 
 	<div class="right">
-		<ImageLazyLoad src={image} alt="Diagram showing how ChainPay works" {root} />
+		<img src={image} alt="Diagram showing how ChainPay works" />
 	</div>
 </div>
 
@@ -28,16 +27,7 @@
 		justify-content: space-between;
 
 		:global(ul) {
-			padding-left: 17px;
 			margin-top: 40px;
-
-			:global(li) {
-				line-height: 26px;
-
-				&::marker {
-					color: #aa72ce;
-				}
-			}
 		}
 	}
 </style>

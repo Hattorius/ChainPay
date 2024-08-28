@@ -59,4 +59,16 @@
 		cursor: pointer;
 		text-transform: uppercase;
 	}
+
+	:global(ul) {
+		padding-left: 17px;
+	}
+
+	:global(li) {
+		line-height: 26px;
+
+		&::marker {
+			color: #aa72ce;
+		}
+	}
 </style>
