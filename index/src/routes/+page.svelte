@@ -1,5 +1,6 @@
 <script>
 	import Cases from '$lib/sections/Cases.svelte';
+	import DevBg from '$lib/sections/DevBG.svelte';
 	import Features from '$lib/sections/Features.svelte';
 	import Hero from '$lib/sections/Hero.svelte';
 	import How from '$lib/sections/How.svelte';
@@ -77,8 +78,26 @@
 
 <Cases />
 
+<DevBg>
+	<h2>Developer-Friendly Integration</h2>
+
+	<p class="info-text">
+		ChainPay is built with developers in mind. Easily integrate our contract to handle automatic
+		token swaps for payments within your DApp or service. No need to worry about managing liquidity
+		or token conversions.
+	</p>
+
+	<a href="https://hattorius.github.io/ChainPay" target="_blank" class="dev-docs">
+		<button>Developer docs</button>
+	</a>
+</DevBg>
+
 <style>
 	.info-text {
 		padding-top: 17px;
+	}
+
+	.dev-docs > button {
+		margin-top: 44px;
 	}
 </style>

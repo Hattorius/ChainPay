@@ -1,0 +1,71 @@
+<script lang="ts">
+	import Info from './Info.svelte';
+
+	import { onMount } from 'svelte';
+
+	import CELLS from 'vanta/dist/vanta.cells.min';
+
+	let bg: HTMLDivElement;
+
+	onMount(() => {
+		CELLS({
+			el: bg,
+			mouseControls: false,
+			touchControls: false,
+			gyroControls: false,
+			minHeight: 200.0,
+			minWidth: 200.0,
+			scale: 1.0,
+			color1: 0x227f9e,
+			color2: 0xaa72ce,
+			size: 4.0,
+			speed: 1.0
+		});
+	});
+</script>
+
+<div>
+	<Info>
+		<slot />
+	</Info>
+
+	<div class="canvas" bind:this={bg} />
+</div>
+
+<style lang="scss">
+	div {
+		background: #1d263b;
+		overflow: hidden;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(180deg, rgba(29, 38, 59, 0.6) 0%, rgba(29, 38, 59, 0.8));
+			pointer-events: none;
+			z-index: 2;
+		}
+
+		:global(*) {
+			z-index: 3;
+			position: relative;
+		}
+	}
+
+	div.canvas {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1;
+		background: transparent;
+		pointer-events: none;
+		width: 100%;
+		height: 100%;
+	}
+</style>
