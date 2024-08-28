@@ -5,6 +5,7 @@
 	import type { TokenType } from '../app';
 
 	export let tokens: TokenType[];
+	export let textToShow = 'Token to receive';
 
 	let wrapper: HTMLDivElement;
 	let picker: HTMLDivElement;
@@ -85,7 +86,7 @@
 			{#if isOpen}
 				<input type="text" bind:this={tokenInput} bind:value={tokenInputValue} />
 			{:else if !selected}
-				Token to receive
+				{textToShow}
 			{:else}
 				<div class="token">
 					<div>
@@ -136,12 +137,12 @@
 		width: 350px;
 		height: 40px;
 		position: relative;
-		z-index: 5;
+		z-index: 50;
 	}
 
 	div.picker {
 		position: absolute;
-		z-index: 10;
+		z-index: 100;
 		top: 0;
 		right: 0;
 		left: 0;
@@ -193,7 +194,7 @@
 	div.list {
 		background: rgb(29, 38, 59);
 		position: relative;
-		z-index: 5;
+		z-index: 50;
 		overflow-y: auto;
 	}
 

@@ -71,4 +71,16 @@
 			color: #aa72ce;
 		}
 	}
+
+	:global(body) {
+		margin: 0;
+		background: #141a2a;
+		min-height: 100vh;
+	}
+
+	:global(*) {
+		font-family: 'Mulish', sans-serif;
+		color: #fff;
+		margin: 0;
+	}
 </style>
