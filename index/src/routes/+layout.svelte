@@ -3,10 +3,6 @@
 </div>
 
 <style>
-	div {
-		padding: 0 6px;
-	}
-
 	:global(h1) {
 		font-size: 50px;
 		font-weight: 300;

@@ -1,6 +1,7 @@
 <script>
 	import Features from '$lib/sections/Features.svelte';
 	import Hero from '$lib/sections/Hero.svelte';
+	import How from '$lib/sections/How.svelte';
 	import Info from '$lib/sections/Info.svelte';
 	import { onMount } from 'svelte';
 
@@ -59,6 +60,19 @@
 		</p>
 	</div>
 </Features>
+
+<How image="./diagram.svg">
+	<h2>How it Works</h2>
+
+	<ul>
+		<li>You create an unsigned transaction</li>
+		<li>The recipient of the token / BNB signs the transaction</li>
+		<li>A different user pays to the ChainPay contract</li>
+		<li>We do our magic in real time & send you your tokens</li>
+	</ul>
+
+	<p>All on chain</p>
+</How>
 
 <style>
 	.info-text {
