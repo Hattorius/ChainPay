@@ -95,12 +95,48 @@
 
 <Roadmap />
 
-<style>
+<Info>
+	<h2>Join the Community</h2>
+
+	<div class="social">
+		<a href="https://github.com/Hattorius/ChainPay" target="_blank">
+			<img src="/github.svg" alt="Github repository" />
+		</a>
+
+		<a href="https://discord.gg/2MqVeKMPpr" target="_blank">
+			<img src="/discord.svg" alt="Discord guild" />
+		</a>
+	</div>
+</Info>
+
+<p class="copy">
+	Copyright ChainPay & contributors {new Date().getFullYear()}
+</p>
+
+<style lang="scss">
 	.info-text {
 		padding-top: 17px;
 	}
 
 	.dev-docs > button {
 		margin-top: 44px;
+	}
+
+	.social {
+		margin-top: 30px;
+		margin-bottom: 230px;
+		display: flex;
+		gap: 50px;
+		justify-content: center;
+
+		img {
+			height: 48px;
+		}
+	}
+
+	p.copy {
+		text-align: center;
+		margin-bottom: 10px;
+		font-size: 12px;
 	}
 </style>
