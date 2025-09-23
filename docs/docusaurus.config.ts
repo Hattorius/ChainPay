@@ -66,6 +66,17 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        defer: 'defer',
+        src: 'https://hi.xlogic.sh/script.js',
+        'data-website-id': '99ba53d4-19d3-4fe2-a7a2-2e8c99865b91'
+      }
+    }
+  ]
 };
 
 export default config;
